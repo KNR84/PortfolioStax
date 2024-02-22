@@ -1,0 +1,6 @@
+@PortfolioStax_HostAddress = http://localhost:5201
+
+GET {{PortfolioStax_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
