@@ -1,4 +1,6 @@
 
+using PortfolioStax.Repositories;
+
 namespace PortfolioStax
 {
     public class Program
@@ -10,6 +12,10 @@ namespace PortfolioStax
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -6,7 +6,7 @@ namespace PortfolioStax.Utils
     /// <summary>
     ///  A set of useful function for interacting with ADO.NET
     /// </summary>
-    public static class PortfolioStax   
+    public static class DbUtils
     {
         /// <summary>
         ///  Get a string from a data reader object and gracefully handle NULL values
@@ -66,6 +66,7 @@ namespace PortfolioStax.Utils
             return reader.GetInt32(ordinal);
         }
 
+
         /// <summary>
         ///  Get a DateTime? (nullable DateTime) from a data reader object and gracefully handle NULL values
         /// </summary>
@@ -82,6 +83,30 @@ namespace PortfolioStax.Utils
 
             return reader.GetDateTime(ordinal);
         }
+
+
+        /// <summary>
+        /// Get a boolean from a data reader object and gracefully handle NULL values
+        /// </summary>
+        public static bool? GetBool(SqlDataReader reader, string column)
+        {
+            var ordinal = reader.GetOrdinal(column);
+            return reader.IsDBNull(ordinal) ? (bool?)null : reader.GetBoolean(ordinal);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         ///  Determine if the value a given column is NULL
@@ -105,13 +130,16 @@ namespace PortfolioStax.Utils
             return !IsDbNull(reader, column);
         }
 
+
+
         /// <summary>
         ///  Add a parameter to the given SqlCommand object and gracefully handle null values.
         /// </summary>
         /// <param name="cmd">The command to which to add the parameter.</param>
         /// <param name="name">The name of the parameter.</param>
         /// <param name="value">The value of the parameter. May be null.</param>
-        public static void AddParameter(SqlCommand cmd, string name, object value)
+        /// 
+ public static void AddParameter(SqlCommand cmd, string name, object value)
         {
             if (value == null)
             {
@@ -124,3 +152,11 @@ namespace PortfolioStax.Utils
         }
     }
 }
+
+
+
+
+
+
+
+
