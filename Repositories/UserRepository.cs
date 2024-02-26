@@ -9,7 +9,7 @@ namespace PortfolioStax.Repositories;
     public UserRepository(IConfiguration configuration) : base(configuration) { }
 
 
-    //find a way to add the BOOL and the GUID 
+   
     public List<User> GetAll()
     {
         using (var conn = Connection)
@@ -18,7 +18,7 @@ namespace PortfolioStax.Repositories;
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = @"
-                         SELECT Id, isReviewer, UserName, Password, Email, guid
+                         SELECT Id, IsReviewer, UserName, Password, Email, Guid
                         FROM [User]";
 
                 List<User> users = new List<User>();
@@ -32,13 +32,72 @@ namespace PortfolioStax.Repositories;
                         UserName = DbUtils.GetString(reader, "UserName"),
                         Password = DbUtils.GetString(reader, "Password"),
                         Email = DbUtils.GetString(reader, "Email"),
-                        IsReviewer = (bool)DbUtils.GetBool(reader, "isReviewer"),
-                        Guid = Guid.Parse(DbUtils.GetString(reader, "guid"))
+                        IsReviewer = (bool)DbUtils.GetBool(reader, "IsReviewer"),
+                        Guid = Guid.Parse(DbUtils.GetString(reader, "Guid"))
                     });
                 }
                 reader.Close();
 
                 return users;
+            }
+        }
+    }
+
+
+
+    public User GetByEmail(string email)
+    {
+        using (var conn = Connection)
+        {
+            conn.Open();
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+                    SELECT Id, IsReviewer, UserName, Password, Email, Guid
+                    FROM [User]
+                    WHERE Email = @email";
+
+                DbUtils.AddParameter(cmd, "@email", email);
+
+                User user = null;
+
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    user = new User()
+                    {
+                        Id = DbUtils.GetInt(reader, "Id"),
+                        UserName = DbUtils.GetString(reader, "UserName"),
+                        Password = DbUtils.GetString(reader, "Password"),
+                        Email = DbUtils.GetString(reader, "Email"),
+                        IsReviewer = (bool)DbUtils.GetBool(reader, "IsReviewer"),
+                        Guid = Guid.Parse(DbUtils.GetString(reader, "Guid"))
+                       
+                    };
+                }
+                reader.Close();
+
+                return user;
+            }
+        }
+    }
+
+    public void Add(User user)
+    {
+        using (var conn = Connection)
+        {
+            conn.Open();
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"INSERT INTO [User] (IsReviewer, UserName, Email, Guid)
+                                OUTPUT INSERTED.ID
+                                VALUES (@IsReviewer, @UserName, @Email, @Guid)";
+                DbUtils.AddParameter(cmd, "@IsReviewer", user.IsReviewer);
+                DbUtils.AddParameter(cmd, "@UserName", user.UserName);
+                DbUtils.AddParameter(cmd, "@Email", user.Email); 
+                DbUtils.AddParameter(cmd, "@Guid", user.Guid); 
+
+                user.Id = (int)cmd.ExecuteScalar();
             }
         }
     }

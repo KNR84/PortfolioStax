@@ -1,17 +1,7 @@
-// This provides the state value of the users array, as well as methods to fetch all users and add a new user.
-const baseUrl = '/api/User';
-
-export const getAllUsers = () => {
-  return fetch(baseUrl) 
-    .then((res) => res.json())
-};
-
-
-
 const apiUrl = "https://localhost:5001";
 
 export const login = (userObject) => {
-  return fetch(`${apiUrl}/api/userprofile/getbyemail?email=${userObject.email}`)
+  return fetch(`${apiUrl}/api/User/GetByEmail?email=${userObject.email}`)
   .then((r) => r.json())
     .then((userProfile) => {
       if(userProfile.id){
@@ -28,8 +18,9 @@ export const logout = () => {
       localStorage.clear()
 };
 
+//fix this api fetch
 export const register = (userObject, password) => {
-  return  fetch(`${apiUrl}/api/userprofile`, {
+  return  fetch(`${apiUrl}/api/User`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +32,6 @@ export const register = (userObject, password) => {
       localStorage.setItem("userProfile", JSON.stringify(savedUserProfile))
     });
 };
-
 
 
 
