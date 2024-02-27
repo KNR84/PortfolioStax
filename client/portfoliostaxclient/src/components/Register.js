@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
 import { register } from "./UserProfileManager"; 
+import portfoliostaxlogo from '../Images/portfoliostaxlogo.png';
 
 
 
@@ -31,16 +32,15 @@ export default function Register({setIsLoggedIn}) {
 
  return (
     <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ backgroundColor: '#86C232', flex: '1' }}>
-        {/* Left side with logo */}
+      <div style={{ backgroundColor: '#86C232', flex: '1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <img src={portfoliostaxlogo} alt="PortfoliosTax Logo" />
         <div style={{ padding: '20px' }}>
-          {/* Add your logo here */}
-          <h1>Logo Here</h1>
         </div>
       </div>
       <div style={{ flex: '1', backgroundColor: '#fff', padding: '20px' }}>
         {/* Right side with registration form */}
         <Form onSubmit={registerClick}>
+        <h3>Complete the following fields to Register</h3>
           <fieldset>
             <FormGroup>
               <Label htmlFor="userName">User Name</Label>
@@ -54,6 +54,11 @@ export default function Register({setIsLoggedIn}) {
               <Label for="password">Password</Label>
               <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
             </FormGroup>
+            <FormGroup>
+  <Label for="confirmPassword">Confirm Password</Label>
+  <Input id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
+</FormGroup>
+
             <FormGroup check>
               <Label check>
                 <Input type="checkbox" onChange={() => setIsReviewer(!isReviewer)} />{' '}

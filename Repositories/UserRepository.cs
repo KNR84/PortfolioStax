@@ -43,9 +43,7 @@ namespace PortfolioStax.Repositories;
         }
     }
 
-
-
-    public User GetByEmail(string email)
+public User GetByEmail(string email)
     {
         using (var conn = Connection)
         {
@@ -84,6 +82,9 @@ namespace PortfolioStax.Repositories;
 
     public void Add(User user)
     {
+        // Generate a new GUID for the user
+        Guid newGuid = Guid.NewGuid();
+
         using (var conn = Connection)
         {
             conn.Open();
@@ -94,11 +95,12 @@ namespace PortfolioStax.Repositories;
                                 VALUES (@IsReviewer, @UserName, @Email, @Guid)";
                 DbUtils.AddParameter(cmd, "@IsReviewer", user.IsReviewer);
                 DbUtils.AddParameter(cmd, "@UserName", user.UserName);
-                DbUtils.AddParameter(cmd, "@Email", user.Email); 
-                DbUtils.AddParameter(cmd, "@Guid", user.Guid); 
+                DbUtils.AddParameter(cmd, "@Email", user.Email);
+                DbUtils.AddParameter(cmd, "@Guid", user.Guid);
 
                 user.Id = (int)cmd.ExecuteScalar();
             }
         }
     }
+
 }

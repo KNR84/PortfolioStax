@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "./UserProfileManager";  
+import portfoliostaxlogo from '../Images/portfoliostaxlogo.png';
 
 export default function Login({setIsLoggedIn}) {
   const navigate = useNavigate();
@@ -27,17 +28,13 @@ export default function Login({setIsLoggedIn}) {
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
-      <div style={{ flex: '1', backgroundColor: '#86C232' }}>
-        {/* Left side with logo */}
-        <div style={{ padding: '20px', color: '#fff' }}>
-          {/* Add your logo here */}
-          <h1>Logo Here</h1>
-        </div>
+      <div style={{ flex: '1', backgroundColor: '#86C232', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img src={portfoliostaxlogo} alt="PortfoliosTax Logo" />
       </div>
-      <div style={{ flex: '1', backgroundColor: '#fff' }}>
+      <div style={{ flex: '1', backgroundColor: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {/* Right side with login content */}
         <div style={{ padding: '20px' }}>
-          <h2>Login</h2>
+          <h2>Welcome! Enter your login</h2>
           <Form onSubmit={loginSubmit}>
             <fieldset>
               <FormGroup>
