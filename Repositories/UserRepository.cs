@@ -43,7 +43,46 @@ namespace PortfolioStax.Repositories;
         }
     }
 
-public User GetByEmail(string email)
+    public User GetById(int id)
+    {
+        using (var conn = Connection)
+        {
+            conn.Open();
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+                          SELECT Id, IsReviewer, UserName, Password, Email, Guid
+                          FROM [User]
+                          WHERE Id = @Id";
+
+                DbUtils.AddParameter(cmd, "@Id", id);
+
+                var reader = cmd.ExecuteReader();
+
+                User user = null;
+                if (reader.Read())
+                {
+                    user = new User()
+                    {
+                        Id = DbUtils.GetInt(reader, "Id"),
+                        UserName = DbUtils.GetString(reader, "UserName"),
+                        Password = DbUtils.GetString(reader, "Password"),
+                        Email = DbUtils.GetString(reader, "Email"),
+                        IsReviewer = (bool)DbUtils.GetBool(reader, "IsReviewer"),
+                        Guid = Guid.Parse(DbUtils.GetString(reader, "Guid"))
+                    };
+                }
+
+                reader.Close();
+
+                return user;
+            }
+        }
+    }
+
+
+
+    public User GetByEmail(string email)
     {
         using (var conn = Connection)
         {
@@ -80,27 +119,30 @@ public User GetByEmail(string email)
         }
     }
 
+
     public void Add(User user)
     {
         // Generate a new GUID for the user
-        Guid newGuid = Guid.NewGuid();
+        user.Guid = Guid.NewGuid();
 
         using (var conn = Connection)
         {
             conn.Open();
             using (var cmd = conn.CreateCommand())
             {
-                cmd.CommandText = @"INSERT INTO [User] (IsReviewer, UserName, Email, Guid)
+                cmd.CommandText = @"INSERT INTO [User] (IsReviewer, UserName, Password, Email, Guid)
                                 OUTPUT INSERTED.ID
-                                VALUES (@IsReviewer, @UserName, @Email, @Guid)";
+                                VALUES (@IsReviewer, @UserName, @Password, @Email, @Guid)";
                 DbUtils.AddParameter(cmd, "@IsReviewer", user.IsReviewer);
                 DbUtils.AddParameter(cmd, "@UserName", user.UserName);
+                DbUtils.AddParameter(cmd, "@Password", user.Password);
                 DbUtils.AddParameter(cmd, "@Email", user.Email);
-                DbUtils.AddParameter(cmd, "@Guid", user.Guid);
+                DbUtils.AddParameter(cmd, "@Guid", user.Guid); // Use the newly generated GUID
 
                 user.Id = (int)cmd.ExecuteScalar();
             }
         }
     }
+
 
 }

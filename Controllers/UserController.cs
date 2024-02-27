@@ -18,12 +18,28 @@ namespace PortfolioStax.Controllers
             _userRepository = userRepository;
         }
 
+
+
+        // GET: api/<UserController> Get All
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_userRepository.GetAll());
         }
 
+
+        // GET api/<UserController>/5 Get by ID
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var userProfile = _userRepository.GetById(id);
+            if (userProfile == null)
+            { return NotFound(); }
+            return Ok(userProfile);
+        }
+
+
+        // GET api/<UserController>/5 Get by email
         [HttpGet("GetByEmail")]
         public IActionResult GetByEmail(string email)
         {
@@ -36,6 +52,7 @@ namespace PortfolioStax.Controllers
             return Ok(user);
         }
 
+        // Post api/<UserController>/5 Create new user
         [HttpPost]
         public IActionResult Post(User user)
         {

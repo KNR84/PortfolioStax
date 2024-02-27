@@ -13,6 +13,7 @@ namespace PortfolioStax
 
             builder.Services.AddControllers();
             builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 
 
 
@@ -21,6 +22,7 @@ namespace PortfolioStax
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

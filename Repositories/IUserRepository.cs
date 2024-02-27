@@ -7,6 +7,7 @@ namespace PortfolioStax.Repositories
         List<User> GetAll();
         User GetByEmail(string email);
         void Add(User user);
+        User GetById(int id);
 
     }
 }
