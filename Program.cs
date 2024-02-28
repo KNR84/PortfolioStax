@@ -13,7 +13,8 @@ namespace PortfolioStax
 
             builder.Services.AddControllers();
             builder.Services.AddTransient<IUserRepository, UserRepository>();
-            
+            builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
+
 
 
 
