@@ -22,7 +22,7 @@ export const logout = () => {
 
 
 //fix this api fetch https://localhost:5001/api/User
-export const register = (userObject, password) => {
+export const register = (userObject) => {
   return fetch(`${apiUrl}/api/User`, {
     method: "POST",
     headers: {
