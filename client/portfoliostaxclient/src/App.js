@@ -8,44 +8,25 @@ import ApplicationViews from './components/ApplicationViews';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-
+  
     useEffect(() => {
-        if (!localStorage.getItem("userProfile")) {
-            setIsLoggedIn(false)
-
-        }
-    }, [isLoggedIn])
-
+      if (!localStorage.getItem("userProfile")) {
+        setIsLoggedIn(false);
+      }
+    }, [isLoggedIn]);
+  
     return (
-        <Router>
-            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-            {isLoggedIn ?
-                <ApplicationViews/>
-                
-                :
-                <Authorize setIsLoggedIn={setIsLoggedIn} />
-            }
-        </Router>
+      <Router>
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        {isLoggedIn ? (
+          <ApplicationViews />
+        ) : (
+          <Authorize setIsLoggedIn={setIsLoggedIn} />
+        )}
+      </Router>
     );
-}
+  }
+  
+  export default App;
 
-export default App;
 
-
-// import React from "react";
-// import "./App.css";
-// import { BrowserRouter } from 'react-router-dom'
-// import UserList from "./components/UserList";
-
-// function App() {
-//  return (
-// <>
-// <BrowserRouter>
-//     <UserList />
-//   </BrowserRouter>
-// </>
-// )
-// }
-
-// export default App;

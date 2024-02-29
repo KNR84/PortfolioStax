@@ -20,7 +20,7 @@ namespace PortfolioStax.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT Id AS PortfolioId, StartYear, FinishYear
+                SELECT Id AS PortfolioId, StartYear, FinishYear, StudentId
                 FROM Portfolio
                 WHERE StudentId = @StudentId";
 
@@ -35,7 +35,8 @@ namespace PortfolioStax.Repositories
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("PortfolioId")),
                             StartYear = reader.GetString(reader.GetOrdinal("StartYear")),
-                            FinishYear = reader.GetString(reader.GetOrdinal("FinishYear"))
+                            FinishYear = reader.GetString(reader.GetOrdinal("FinishYear")),
+                            StudentId = reader.GetInt32(reader.GetOrdinal("StudentId"))
                         });
                     }
 

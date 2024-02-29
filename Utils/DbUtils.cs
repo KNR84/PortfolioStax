@@ -84,7 +84,7 @@ namespace PortfolioStax.Utils
             return reader.GetDateTime(ordinal);
         }
 
-
+        //added to get bool from dbutils
         /// <summary>
         /// Get a boolean from a data reader object and gracefully handle NULL values
         /// </summary>
@@ -93,17 +93,6 @@ namespace PortfolioStax.Utils
             var ordinal = reader.GetOrdinal(column);
             return reader.IsDBNull(ordinal) ? (bool?)null : reader.GetBoolean(ordinal);
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
