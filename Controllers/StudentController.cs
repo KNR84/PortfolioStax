@@ -43,6 +43,28 @@ namespace PortfolioStax.Controllers
             _studentRepository.Add(student);
             return CreatedAtAction("Get", new { id = student.Id }, student);
         }
+
+
+        // PUT api/<CategoriesController>/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Student student)
+        {
+            if (id != student.Id)
+            {
+                return BadRequest();
+            }
+
+            _studentRepository.Update(student);
+            return NoContent();
+        }
+
+        // DELETE student
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _studentRepository.Delete(id);
+            return NoContent();
+        }
     }
 
 

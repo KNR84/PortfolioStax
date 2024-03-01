@@ -99,5 +99,47 @@ namespace PortfolioStax.Repositories
             }
         }
 
+
+        public void Update(Student student)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                UPDATE Student
+                   SET FirstName = @FirstName,
+                       LastName = @LastName,
+                       GradeLevel = @GradeLevel
+                   WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@FirstName", student.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", student.LastName);
+                    DbUtils.AddParameter(cmd, "@GradeLevel", student.GradeLevel);
+                    DbUtils.AddParameter(cmd, "@Id", student.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Student WHERE Id = @Id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
