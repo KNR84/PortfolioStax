@@ -1,9 +1,10 @@
-// Portfolio API manager
-const apiUrl = "https://localhost:5001";
+// PortfolioManager.js
 
-export const getPortfolioYears = (studentId) => {
-  return fetch(`${apiUrl}/api/Portfolio/${studentId}/Years`)
-    .then((response) => response.json());
-};
+const baseUrl = '/api/Portfolio/{studentId}';
 
+
+export const getPortfolioYears = () => {
+    return fetch(baseUrl) 
+      .then((res) => res.json())
+  };
 

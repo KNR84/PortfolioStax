@@ -81,7 +81,6 @@ namespace PortfolioStax.Repositories;
     }
 
 
-
     public User GetByEmail(string email)
     {
         using (var conn = Connection)

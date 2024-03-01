@@ -7,7 +7,7 @@ namespace PortfolioStax.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+
     public class EventController : ControllerBase
     {
         private readonly IEventRepository _eventRepository;
@@ -15,7 +15,7 @@ namespace PortfolioStax.Controllers
         {
             _eventRepository = eventRepository;
         }
-        
+
         // GetAllWithStudentDetails 
         [HttpGet]
         public IActionResult Get()
@@ -24,7 +24,7 @@ namespace PortfolioStax.Controllers
         }
 
 
-        
+
         // GET: api/Event/GetEventsByChildIdInHousehold/{childId}/{parentId}
         [HttpGet("GetEventsByChildIdInHousehold/{childId}/{parentId}")]
         public IActionResult GetEventsByChildIdInHousehold(int childId, int parentId)
@@ -36,13 +36,38 @@ namespace PortfolioStax.Controllers
             }
             return Ok(events);
         }
+
+        // Add new event
+        [HttpPost]
+        public IActionResult Event(Event @event)
+        {
+            _eventRepository.Add(@event);
+            return CreatedAtAction("Get", new { id = @event.Id }, @event);
+        }
+
+        // Edit event
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Event @event)
+        {
+            if (id != @event.Id)
+            {
+                return BadRequest();
+            }
+
+            _eventRepository.Update(@event); 
+            return NoContent();
+        }
+        
+        // DELETE event
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _eventRepository.Delete(id);
+            return NoContent();
+        }
     }
 
-    //// add new >
-    //[HttpPost]
-    //public IActionResult Category(Category category)
-    //{
-    //    _categoryRepository.Add(category);
-    //    return CreatedAtAction("Get", new { id = category.Id }, category);
-    //}
+
+
+
 }

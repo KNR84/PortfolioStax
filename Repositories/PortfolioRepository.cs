@@ -1,15 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using PortfolioStax.Repositories;
-using PortfolioStax.Utils;
 using PortfolioStax.Model;
 
 namespace PortfolioStax.Repositories
 {
     public class PortfolioRepository : BaseRepository, IPortfolioRepository
     {
-
         public PortfolioRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<Portfolio> GetPortfolioYearsByStudentId(int studentId)
@@ -20,9 +17,11 @@ namespace PortfolioStax.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT Id AS PortfolioId, StartYear, FinishYear, StudentId
-                FROM Portfolio
-                WHERE StudentId = @StudentId";
+                        SELECT p.Id AS PortfolioId, p.StartYear, p.FinishYear, p.StudentId,
+                               s.Id AS StudentId, s.ParentId, s.FirstName, s.LastName, s.GradeLevel
+                        FROM Portfolio p
+                        JOIN Student s ON p.StudentId = s.Id
+                        WHERE p.StudentId = @StudentId";
 
                     cmd.Parameters.AddWithValue("@StudentId", studentId);
 
@@ -36,7 +35,15 @@ namespace PortfolioStax.Repositories
                             Id = reader.GetInt32(reader.GetOrdinal("PortfolioId")),
                             StartYear = reader.GetString(reader.GetOrdinal("StartYear")),
                             FinishYear = reader.GetString(reader.GetOrdinal("FinishYear")),
-                            StudentId = reader.GetInt32(reader.GetOrdinal("StudentId"))
+                            StudentId = reader.GetInt32(reader.GetOrdinal("StudentId")),
+                            Student = new Student
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("StudentId")),
+                                ParentId = reader.GetInt32(reader.GetOrdinal("ParentId")),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                GradeLevel = reader.GetInt32(reader.GetOrdinal("GradeLevel"))
+                            }
                         });
                     }
 
@@ -46,10 +53,5 @@ namespace PortfolioStax.Repositories
                 }
             }
         }
-
-
-
-
-
     }
 }

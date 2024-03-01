@@ -3,7 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Hello from "./Hello";
 import Login from "./Login";
 import Register from "./Register";
-import PortfolioYearSelector from "./Portfolio";
+import { Portfolio } from "./Portfolio";
+
 
 
 
@@ -16,7 +17,7 @@ export default function ApplicationViews() {
 
         <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/portfolio-year-selector" element={<PortfolioYearSelector />} />
+      <Route path="/portfolio-year-selector" element={<Portfolio />} />
        
         
       </Routes>
