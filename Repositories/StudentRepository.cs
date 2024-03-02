@@ -1,5 +1,7 @@
 ﻿using PortfolioStax.Model;
 using PortfolioStax.Utils;
+
+
 namespace PortfolioStax.Repositories
 {
     public class StudentRepository : BaseRepository, IStudentRepository
@@ -48,9 +50,9 @@ namespace PortfolioStax.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                         SELECT Id, ParentId, FirstName, LastName, GradeLevel
-                         FROM Student
-                         WHERE Id = @Id";
+                   SELECT Id, ParentId, FirstName, LastName, GradeLevel
+                   FROM Student
+                   WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 

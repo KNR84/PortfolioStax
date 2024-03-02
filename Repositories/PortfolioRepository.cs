@@ -2,12 +2,56 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using PortfolioStax.Model;
+using PortfolioStax.Utils;
 
 namespace PortfolioStax.Repositories
 {
     public class PortfolioRepository : BaseRepository, IPortfolioRepository
     {
         public PortfolioRepository(IConfiguration configuration) : base(configuration) { }
+
+
+        public List<Portfolio> GetAll()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                SELECT p.Id, p.StudentId, p.StartYear, p.FinishYear,
+                       s.ParentId, s.FirstName, s.LastName, s.GradeLevel
+                FROM Portfolio p
+                JOIN Student s ON p.StudentId = s.Id";
+
+                    var portfolios = new List<Portfolio>();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            portfolios.Add(new Portfolio()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                StartYear = DbUtils.GetString(reader, "StartYear"),
+                                FinishYear = DbUtils.GetString(reader, "FinishYear"),
+                                StudentId = DbUtils.GetInt(reader, "StudentId"),
+                                Student = new Student
+                                {
+                                    Id = DbUtils.GetInt(reader, "StudentId"),
+                                    ParentId = DbUtils.GetInt(reader, "ParentId"),
+                                    FirstName = DbUtils.GetString(reader, "FirstName"),
+                                    LastName = DbUtils.GetString(reader, "LastName"),
+                                    GradeLevel = DbUtils.GetInt(reader, "GradeLevel")
+                                }
+                            });
+                        }
+                    }
+
+                    return portfolios;
+                }
+            }
+        }
+
 
         public List<Portfolio> GetPortfolioYearsByStudentId(int studentId)
         {
@@ -53,5 +97,55 @@ namespace PortfolioStax.Repositories
                 }
             }
         }
+
+        public void Add(Portfolio portfolio)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                INSERT INTO Portfolio (StudentId, StartYear, FinishYear)
+                OUTPUT INSERTED.Id
+                VALUES (@StudentId, @StartYear, @FinishYear)";
+
+                    // Assuming portfolio object contains StudentId, StartYear, and FinishYear
+                    cmd.Parameters.AddWithValue("@StudentId", portfolio.StudentId);
+                    cmd.Parameters.AddWithValue("@StartYear", portfolio.StartYear);
+                    cmd.Parameters.AddWithValue("@FinishYear", portfolio.FinishYear);
+
+                    portfolio.Id = (int)cmd.ExecuteScalar();
+
+                    // Now, populate the remaining data from the Student table
+                    cmd.CommandText = @"
+                SELECT s.ParentId, s.FirstName, s.LastName, s.GradeLevel
+                FROM Student s
+                WHERE s.Id = @StudentId";
+
+                    // Reusing the same cmd object, just resetting parameters
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@StudentId", portfolio.StudentId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            portfolio.Student = new Student
+                            {
+                                Id = portfolio.StudentId,
+                                ParentId = DbUtils.GetInt(reader, "ParentId"),
+                                FirstName = DbUtils.GetString(reader, "FirstName"),
+                                LastName = DbUtils.GetString(reader, "LastName"),
+                                GradeLevel = DbUtils.GetInt(reader, "GradeLevel")
+                            };
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //ASK STEVE ABOUT MY DELETE
     }
 }
