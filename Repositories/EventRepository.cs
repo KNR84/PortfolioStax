@@ -90,7 +90,7 @@ namespace PortfolioStax.Repositories
         }
 
         //add an event
-        public void Add(Event @event)
+        public void Add(Event eventItem)
         {
             using (var conn = Connection)
             {
@@ -102,17 +102,17 @@ namespace PortfolioStax.Repositories
                 OUTPUT INSERTED.ID
                 VALUES (@Name, @StudentId, @EventType, @EventDate)";
 
-                    DbUtils.AddParameter(cmd, "Name", @event.EventName);
-                    DbUtils.AddParameter(cmd, "StudentId", @event.StudentId);
-                    DbUtils.AddParameter(cmd, "EventType", @event.EventType);
-                    DbUtils.AddParameter(cmd, "EventDate", @event.EventDate);
+                    DbUtils.AddParameter(cmd, "Name", eventItem.EventName);
+                    DbUtils.AddParameter(cmd, "StudentId", eventItem.StudentId);
+                    DbUtils.AddParameter(cmd, "EventType", eventItem.EventType);
+                    DbUtils.AddParameter(cmd, "EventDate", eventItem.EventDate);
 
-                    @event.Id = (int)cmd.ExecuteScalar();
+                    eventItem.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
 
-        public void Update(Event @event)
+        public void Update(Event eventItem)
         {
             using (var conn = Connection)
             {
@@ -127,18 +127,18 @@ namespace PortfolioStax.Repositories
                     EventDate = @EventDate
                 WHERE Id = @Id";
 
-                    DbUtils.AddParameter(cmd, "Name", @event.EventName);
-                    DbUtils.AddParameter(cmd, "StudentId", @event.StudentId);
-                    DbUtils.AddParameter(cmd, "EventType", @event.EventType);
-                    DbUtils.AddParameter(cmd, "EventDate", @event.EventDate);
-                    DbUtils.AddParameter(cmd, "Id", @event.Id);
+                    DbUtils.AddParameter(cmd, "Name", eventItem.EventName);
+                    DbUtils.AddParameter(cmd, "StudentId", eventItem.StudentId);
+                    DbUtils.AddParameter(cmd, "EventType", eventItem.EventType);
+                    DbUtils.AddParameter(cmd, "EventDate", eventItem.EventDate);
+                    DbUtils.AddParameter(cmd, "Id", eventItem.Id);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void Delete(int @event)
+        public void Delete(int eventId)
         {
             using (var conn = Connection)
             {
@@ -149,21 +149,12 @@ namespace PortfolioStax.Repositories
                 DELETE FROM Event
                 WHERE Id = @Id";
 
-                    DbUtils.AddParameter(cmd, "Id", @event);
+                    DbUtils.AddParameter(cmd, "Id", eventId);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-
-
-
-
-
-
-
-
-
     }
 }
 

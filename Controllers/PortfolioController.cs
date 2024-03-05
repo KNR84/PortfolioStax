@@ -54,9 +54,8 @@ namespace PortfolioStax.Controllers
                 return StatusCode(500, "An error occurred while adding the portfolio.");
             }
         }
+
     }
-
-
 }
 
 

@@ -110,7 +110,7 @@ namespace PortfolioStax.Repositories
                 OUTPUT INSERTED.Id
                 VALUES (@StudentId, @StartYear, @FinishYear)";
 
-                    // Assuming portfolio object contains StudentId, StartYear, and FinishYear
+                   
                     cmd.Parameters.AddWithValue("@StudentId", portfolio.StudentId);
                     cmd.Parameters.AddWithValue("@StartYear", portfolio.StartYear);
                     cmd.Parameters.AddWithValue("@FinishYear", portfolio.FinishYear);
@@ -145,7 +145,48 @@ namespace PortfolioStax.Repositories
             }
         }
 
+         public void Update(Portfolio portfolio)
+        {
+            try
+            {
+                using (var conn = Connection)
+                {
+                    conn.Open();
 
-        //ASK STEVE ABOUT MY DELETE
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
+                    UPDATE Portfolio 
+                    SET StartYear = @StartYear, FinishYear = @FinishYear 
+                    WHERE Id = @Id";
+
+                        cmd.Parameters.AddWithValue("@Id", portfolio.Id);
+                        cmd.Parameters.AddWithValue("@StartYear", portfolio.StartYear);
+                        cmd.Parameters.AddWithValue("@FinishYear", portfolio.FinishYear);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            throw new Exception("No rows were updated. Portfolio may not exist.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception
+                Console.WriteLine($"Error: {ex.Message}");
+                throw; // Rethrow the exception for the caller to handle
+            }
+        }
+
+
+
+
+
+
+
+       
     }
 }

@@ -23,8 +23,6 @@ namespace PortfolioStax.Controllers
             return Ok(_eventRepository.GetAllWithStudentDetails());
         }
 
-
-
         // GET: api/Event/GetEventsByChildIdInHousehold/{childId}/{parentId}
         [HttpGet("GetEventsByChildIdInHousehold/{childId}/{parentId}")]
         public IActionResult GetEventsByChildIdInHousehold(int childId, int parentId)
@@ -39,25 +37,25 @@ namespace PortfolioStax.Controllers
 
         // Add new event
         [HttpPost]
-        public IActionResult Event(Event @event)
+        public IActionResult Event(Event eventItem)
         {
-            _eventRepository.Add(@event);
-            return CreatedAtAction("Get", new { id = @event.Id }, @event);
+            _eventRepository.Add(eventItem);
+            return CreatedAtAction("Get", new { id = eventItem.Id }, eventItem);
         }
 
         // Edit event
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Event @event)
+        public IActionResult Put(int id, Event eventItem)
         {
-            if (id != @event.Id)
+            if (id != eventItem.Id)
             {
                 return BadRequest();
             }
 
-            _eventRepository.Update(@event); 
+            _eventRepository.Update(eventItem);
             return NoContent();
         }
-        
+
         // DELETE event
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
@@ -66,8 +64,4 @@ namespace PortfolioStax.Controllers
             return NoContent();
         }
     }
-
-
-
-
 }

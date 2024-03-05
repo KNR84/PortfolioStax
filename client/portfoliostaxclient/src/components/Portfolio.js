@@ -1,19 +1,16 @@
-import React from "react";
-import { Card, CardBody, Button } from "reactstrap";
+import React from 'react';
 
-
-export const Portfolio = ({ portfolio }) => {
+function Portfolio({ portfolio }) {
+  console.log('Portfolio:', portfolio); // Log the portfolio object
   return (
-    <Card className="m-4">
-      <CardBody>
-        <p>
-          <h5 to={`/portfolio/edit${portfolio.id}`}>
-            <strong>{portfolio.name}</strong>
-          </h5>
-        </p>
-       
-       </CardBody>
-    </Card>
+    <div>
+      <h3>Portfolio ID: {portfolio.id}</h3>
+      <p>Start Year: {portfolio.startYear}</p>
+      <p>Finish Year: {portfolio.finishYear}</p>
+      <p>Student ID: {portfolio.studentId}</p>
+      {/* Render other portfolio details as needed */}
+    </div>
   );
-};
+}
 
+export default Portfolio;

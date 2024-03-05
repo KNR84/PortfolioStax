@@ -7,6 +7,7 @@ namespace PortfolioStax.Repositories
         List<Portfolio> GetAll();
         List<Portfolio> GetPortfolioYearsByStudentId(int studentId);
         void Add(Portfolio portfolio);
+        void Update(Portfolio portfolio);
 
 
 
