@@ -11,3 +11,91 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Home page styles */
+.banner {
+  position: relative; /* Position the banner container */
+  width: auto; /* Adjust width automatically based on height */
+  height: 500px; /* Adjust height as needed */
+  overflow: hidden;
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+.banner img {
+  width: 100%;
+  height: 90%;
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+/* Divider line */
+.divider {
+  width: 100%;
+  height: 10px; /* Adjust height of the divider line */
+  background-color: white; /* Color of the divider line */
+}
+
+.section {
+  width: 25%; /* Each section takes 25% of the screen width */
+  padding: 20px;
+  margin-top: -20px; /* Adjust the margin to align with the banner */
+  background-color: #f0f0f0;
+  position: relative; /* Position the sections relative to the banner */
+  display: inline-block; /* Display sections inline */
+  vertical-align: top; /* Align sections to the top */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  top: -80px; /* Adjust the top position to align with the banner */
+}
+
+.section .content {
+  max-width: 100%; /* Ensure content doesn't exceed section width */
+}
+
+.section h2 {
+  margin-top: 0;
+}
+
+.section p {
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Different background colors for each section */
+
+.section:nth-child(3) {
+  background-color: #61892f; /* Change to desired color */
+}
+
+.section:nth-child(4) {
+  background-color: #86c232; /* Change to desired color */
+}
+.section:nth-child(5) {
+  background-color: #474b4f; /* Change to desired color */
+}
+.section:nth-child(6) {
+  background-color: #686e71; /* Change to desired color */
+}
+
+/* Footer styles */
+.footer {
+  position: fixed; /* Fixed position to keep it at the bottom */
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Stretch the footer across the entire width */
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  z-index: 10; /* Ensure it's above other content */
+}
