@@ -6,6 +6,6 @@
         public int StudentId { get; set; }
         public string StartYear { get; set; }
         public string FinishYear { get; set; }
-        public Student Student { get; set; } 
+        public Student? Student { get; set; } 
     }
 }

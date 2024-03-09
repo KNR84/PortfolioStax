@@ -16,7 +16,7 @@ code {
 .banner {
   position: relative; /* Position the banner container */
   width: auto; /* Adjust width automatically based on height */
-  height: 500px; /* Adjust height as needed */
+  height: 800px; /* Adjust height as needed */
   overflow: hidden;
   display: flex; /* Use flexbox for centering */
   justify-content: center; /* Center content horizontally */
