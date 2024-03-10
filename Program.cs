@@ -19,6 +19,8 @@ namespace PortfolioStax
             builder.Services.AddTransient<IPortfolioItemRepository, PortfolioItemRepository>();
             builder.Services.AddTransient<IPortfolioReviewRepository, PortfolioReviewRepository>();
             builder.Services.AddTransient<IPortfolioUploadRepository, PortfolioUploadRepository>();
+            
+            builder.Services.AddTransient<NewPortfolioUploadRepository>();
 
 
 

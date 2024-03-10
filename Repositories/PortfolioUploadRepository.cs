@@ -6,10 +6,10 @@ namespace PortfolioStax.Repositories
     {
         private readonly string? _uploadFolderPath;
 
-        //public PortfolioUploadRepository(string uploadFolderPath)
-        //{
-        //    _uploadFolderPath = uploadFolderPath;
-        //}
+        public PortfolioUploadRepository(string uploadFolderPath)
+        {
+            _uploadFolderPath = uploadFolderPath;
+        }
 
 
         public PortfolioUploadRepository()
@@ -40,6 +40,6 @@ namespace PortfolioStax.Repositories
             return Path.Combine("/uploads", fileName); // Assuming uploads are served from the /uploads folder
         }
 
-      
+
     }
 }

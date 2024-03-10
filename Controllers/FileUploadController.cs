@@ -3,23 +3,24 @@ using PortfolioStax.Repositories; // Import your repository here
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
+
 namespace PortfolioStax.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FileUploadController : ControllerBase
     {
-        private readonly IPortfolioUploadRepository _portfolioUploadRepository; // Replace with your repository interface
+        private readonly UploadFileRepository _uploadFileRepository; // Replace with your repository interface
 
-        public FileUploadController(IPortfolioUploadRepository portfolioUploadRepository) // Replace with your repository interface
+        public FileUploadController(UploadFileRepository uploadFileRepository) // Replace with your repository interface
         {
-            _portfolioUploadRepository = portfolioUploadRepository;
+            _uploadFileRepository = uploadFileRepository;
         }
 
         // POST: api/FileUpload
         [HttpPost]
         [Route("upload")]
-        public async Task<IActionResult> UploadFile(IFormFile file)
+        public async Task<IActionResult> UploadFile(IFormFile file, int id)
         {
             if (file == null || file.Length == 0)
                 return BadRequest("File is not selected.");
@@ -33,6 +34,11 @@ namespace PortfolioStax.Controllers
             {
                 await file.CopyToAsync(stream);
             }
+
+            Model.UploadedPortfolioFile u = new Model.UploadedPortfolioFile();
+            u.FilePath = filePath;
+            u.PortfolioItemId = id;
+            _uploadFileRepository.UploadPortfolioItemFile(u);
 
             // Save file to database using your repository
             // Example: _portfolioReviewRepository.SaveFile(file);
