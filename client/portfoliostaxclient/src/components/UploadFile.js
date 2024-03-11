@@ -149,7 +149,7 @@ function UploadFile() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('https://localhost:5001/api/FileUpload/upload', formData, {
+      const response = await axios.post('https://localhost:5001/api/NewPortfolioUpload/upload?id=2', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

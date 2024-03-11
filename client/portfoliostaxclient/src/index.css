@@ -1,15 +1,16 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  body {
+    font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+  }
+  
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  body {
+    font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+  }
+  
 }
 
 /* Home page styles */
@@ -24,27 +25,24 @@ code {
 }
 .banner img {
   width: 100%;
-  height: 90%;
+  height: 99%;
   object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
 
-/* Divider line */
-.divider {
-  width: 100%;
-  height: 10px; /* Adjust height of the divider line */
-  background-color: white; /* Color of the divider line */
-}
 
 .section {
   width: 25%; /* Each section takes 25% of the screen width */
-  padding: 20px;
+  padding: 50px;
   margin-top: -20px; /* Adjust the margin to align with the banner */
-  background-color: #f0f0f0;
+  height: 500px; /* Adjust height as needed */
   position: relative; /* Position the sections relative to the banner */
   display: inline-block; /* Display sections inline */
   vertical-align: top; /* Align sections to the top */
   box-sizing: border-box; /* Include padding and border in the width calculation */
   top: -80px; /* Adjust the top position to align with the banner */
+  font-family: 'Cascadia Code', Consolas, 'Courier New', monospace; /* Apply Cascadia Code font to sections */
+  font-size: 18px; /* Increase font size */
+  color: black;
 }
 
 .section .content {
@@ -89,13 +87,24 @@ code {
 
 /* Footer styles */
 .footer {
-  position: fixed; /* Fixed position to keep it at the bottom */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%; /* Stretch the footer across the entire width */
+  width: 100%;
+  height: 80px;
   background-color: black;
-  color: white;
+  color: #86c232;
   padding: 10px;
   text-align: center;
-  z-index: 10; /* Ensure it's above other content */
+  z-index: 10;
+  font-family: 'Cascadia Code', Consolas, 'Courier New', monospace; /* Apply Cascadia Code font to sections */
+  font-size: 18px; /* Increase font size */
 }
+
+
+
+
+

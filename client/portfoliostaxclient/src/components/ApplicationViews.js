@@ -26,6 +26,10 @@ import Login from "./Login";
 import Register from "./Register";
 import Portfolio from "./Portfolio";
 import UploadFile from "./UploadFile";
+import CreatePortfolio from "./CreatePortfolio";
+import ViewMyPortfolio from "./ViewMyPortfolio";
+import KeepOrganized from "./KeepOrganized";
+import AddReviewer from "./AddReviewer";
 
 export default function ApplicationViews() {
   return (
@@ -35,6 +39,10 @@ export default function ApplicationViews() {
       <Route path="/register" element={<Register />} />
       <Route path="/portfolio-year-selector" element={<Portfolio />} />
       <Route path="/upload-file" element={<UploadFile />} />
+      <Route path="/create-portfolio" element={<CreatePortfolio />} />
+      <Route path="/view-portfolio" element={<ViewMyPortfolio />} />
+      <Route path="/keep-organized" element={<KeepOrganized />} />
+      <Route path="/add-reviewer" element={<AddReviewer />} />
       <Route path="*" element={<Home />} /> {/* Default route */}
     </Routes>
   );

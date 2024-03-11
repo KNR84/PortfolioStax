@@ -45,8 +45,12 @@ namespace PortfolioStax.Controllers
             //System.IO.File.Copy(file, dest, true);
             //System.IO.File.SetAttributes("C:/test", FileAttributes.Normal);
 
-
-            var filePath = Path.Combine(@"C:\test", file.FileName);
+            
+            //assigns a guid to the newly uploaded file and adds the extension so there is no collision in file names in the database
+            Guid newGuid = Guid.NewGuid();
+            string fileName = newGuid.ToString("N");
+            string ext = Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(@"C:\test", fileName + ext);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);

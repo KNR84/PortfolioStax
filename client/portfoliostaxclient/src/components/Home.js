@@ -102,7 +102,7 @@ export default function Home() {
 
       {/* Footer */}
       <div className="footer">
-        Your footer text goes here
+      <h4>Your Homeschool, Your Portfolio, Our Tech</h4>
       </div>
     </div>
   );

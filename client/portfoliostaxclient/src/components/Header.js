@@ -31,6 +31,23 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
               </NavItem>
 
+              <NavItem>
+  <NavLink tag={RRNavLink} to="/create-portfolio">Create New Portfolio</NavLink>
+</NavItem>
+
+<NavItem>
+  <NavLink tag={RRNavLink} to="/view-portfolio">View My Portfolio</NavLink>
+</NavItem>
+
+<NavItem>
+  <NavLink tag={RRNavLink} to="/keep-organized">Keep Organized</NavLink>
+</NavItem>
+
+<NavItem>
+  <NavLink tag={RRNavLink} to="/add-reviewer">Add A Reviewer</NavLink>
+</NavItem>
+
+
             </>
             }
           </Nav>
