@@ -1,3 +1,4 @@
+//this is the function to rotate the banner photo on the homepage
 import React, { useEffect, useState } from 'react';
 
 const BannerRotator = ({ images }) => {
