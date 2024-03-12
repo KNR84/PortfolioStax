@@ -1,5 +1,4 @@
-// PortfolioList: http://localhost:3000/portfolios     
-//A component responsible for fetching and displaying a list of portfolios. This component renders multiple instances of the PortfolioItem component.
+ //A component responsible for fetching and displaying a list of portfolios. This component renders multiple instances of the PortfolioItem component.
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +25,7 @@ const PortfolioList = () => {
   }, []);
 
   const handleAddNewPortfolio = () => {
-    navigate("/create-new-portfolio");
+    navigate("/create/new/portfolio");
   };
 
   const handleEdit = (portfolioId) => {

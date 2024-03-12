@@ -2,14 +2,23 @@
 
 import { useState } from "react";
 import { addPortfolio } from "../APIManagers/PortfolioViewManager";
+import { useNavigate } from 'react-router-dom'
 
 
 export const PortfolioForm = ({ updatePortfoliosState }) => {
     const [newPortfolio, setNewPortfolio] = useState({
         startYear: "",
         finishYear: "",
+        studentId: 0
     });
 
+    
+    
+//QUESTION FOR STEVE how do I get the Student Id?
+    
+    
+const navigate = useNavigate()
+    
     const clickTheSaveButton = (e) => {
         e.preventDefault()
 
@@ -22,7 +31,7 @@ export const PortfolioForm = ({ updatePortfoliosState }) => {
         .then(setNewPortfolio({
                     startYear: "",
                     finishYear: "",
-        })).then(() => updatePortfoliosState())
+                })).then(() => navigate("/portfolio/list"))
     }
 
     return (

@@ -8,7 +8,8 @@ import { editPortfolio, getPortfolioByStudentId } from "../APIManagers/Portfolio
 export const EditPortfolio = () => {
     const [portfolio, setPortfolio] = useState({
         startYear: "",
-        finishYear: ""
+        finishYear: "", 
+        studentId: 0
     });
 
     const navigate = useNavigate();
