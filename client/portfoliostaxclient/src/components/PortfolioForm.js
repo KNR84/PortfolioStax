@@ -6,9 +6,6 @@ import { addPortfolio } from "../APIManagers/PortfolioViewManager";
 
 export const PortfolioForm = ({ updatePortfoliosState }) => {
     const [newPortfolio, setNewPortfolio] = useState({
-        studentFirstName: "",
-        studentLastName: "",
-        gradeLevel: "",
         startYear: "",
         finishYear: "",
     });
@@ -17,18 +14,12 @@ export const PortfolioForm = ({ updatePortfoliosState }) => {
         e.preventDefault()
 
         const newPortfolioToSendToAPI = {
-            StudentFirstName: newPortfolio.studentFirstName,
-            StudentLastName: newPortfolio.studentLastName,
-            GradeLevel: newPortfolio.gradeLevel,
             StartYear: newPortfolio.startYear,
             FinishYear: newPortfolio.finishYear,
         }
 
         addPortfolio(newPortfolioToSendToAPI)
         .then(setNewPortfolio({
-                    studentFirstName: "",
-                    studentLastName: "",
-                    gradeLevel: "",
                     startYear: "",
                     finishYear: "",
         })).then(() => updatePortfoliosState())
@@ -38,45 +29,6 @@ export const PortfolioForm = ({ updatePortfoliosState }) => {
         <>
         <form className="portfolio-form">
             <fieldset>
-                <div className="form-group">
-                    <h3><b><label htmlFor="studentFirstName">Student First Name:</label></b></h3>
-                    <input
-                        type="text"
-                        id="studentFirstName"
-                        value={newPortfolio.studentFirstName}
-                        onChange={(event) => {
-                            const copy = { ...newPortfolio };
-                            copy.studentFirstName = event.target.value;
-                            setNewPortfolio(copy);
-                        }}
-                    />
-                </div>
-                <div className="form-group">
-                    <h3><b><label htmlFor="studentLastName">Student Last Name:</label></b></h3>
-                    <input
-                        type="text"
-                        id="studentLastName"
-                        value={newPortfolio.studentLastName}
-                        onChange={(event) => {
-                            const copy = { ...newPortfolio };
-                            copy.studentLastName = event.target.value;
-                            setNewPortfolio(copy);
-                        }}
-                    />
-                </div>
-                <div className="form-group">
-                    <h3><b><label htmlFor="gradeLevel">Grade Level:</label></b></h3>
-                    <input
-                        type="text"
-                        id="gradeLevel"
-                        value={newPortfolio.gradeLevel}
-                        onChange={(event) => {
-                            const copy = { ...newPortfolio };
-                            copy.gradeLevel = event.target.value;
-                            setNewPortfolio(copy);
-                        }}
-                    />
-                </div>
                 <div className="form-group">
                     <h3><b><label htmlFor="startYear">Start Year:</label></b></h3>
                     <input

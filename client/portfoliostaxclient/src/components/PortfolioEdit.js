@@ -3,48 +3,66 @@
 import { useEffect, useState } from "react";
 import { Container, Input, InputGroup, Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { editPortfolio, getPortfolioByStudentId } from "../Managers/PortfolioManager";
+import { editPortfolio, getPortfolioByStudentId } from "../APIManagers/PortfolioViewManager";
 
+export const EditPortfolio = () => {
+    const [portfolio, setPortfolio] = useState({
+        startYear: "",
+        finishYear: ""
+    });
 
-export const editPortfolio = () => {
-	const [portfolio, setPortfolio] = useState({
-		name: ""
-        
-	});
-	const navigate = useNavigate();
-    const { id } = useParams()
-
+    const navigate = useNavigate();
+    const { id } = useParams();
 
     useEffect(() => {
         getPortfolioByStudentId(id)
             .then((data) => {
-                setPortfolio(data)
+                setPortfolio(data);
+            });
+    }, [id]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+
+        editPortfolio(portfolio)
+            .then(() => {
+                navigate("/portfolios"); // Navigate back to /portfolios
             })
-        }, [id])
+            .catch((error) => {
+                console.error("Error editing portfolio:", error);
+                // Handle error accordingly
+            });
+    };
 
-
-	const handleSubmit = (e) => {
-		
-		return editPortfolio(portfolio).then(() => navigate("/portfolios"));
-	};
-	return (
-		<Container>
-			<InputGroup>
-				<Input
-					placeholder='Name'
-                    value={portfolio.name}
-					onChange={(e) => {
-						const copy = { ...portfolio };
-						copy.name = e.target.value;
-						setPortfolio(copy);
-					}}
-				/>
-				<Button color='primary' onClick={(e) => handleSubmit(e)}>
-					Save
-				</Button>
-			</InputGroup>
-		</Container>
-	);
+    return (
+        <Container>
+            <InputGroup>
+                <Input
+                    placeholder='Start Year'
+                    value={portfolio.startYear}
+                    onChange={(e) => {
+                        const copy = { ...portfolio };
+                        copy.startYear = e.target.value;
+                        setPortfolio(copy);
+                    }}
+                />
+            </InputGroup>
+            <InputGroup>
+                <Input
+                    placeholder='Finish Year'
+                    value={portfolio.finishYear}
+                    onChange={(e) => {
+                        const copy = { ...portfolio };
+                        copy.finishYear = e.target.value;
+                        setPortfolio(copy);
+                    }}
+                />
+            </InputGroup>
+            <Button color='primary' onClick={(e) => handleSubmit(e)}>
+                Save
+            </Button>
+        </Container>
+    );
 };
 
 
