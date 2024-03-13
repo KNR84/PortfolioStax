@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using PortfolioStax.Model;
 using PortfolioStax.Repositories;
+using System.Net;
 
 namespace PortfolioStax.Controllers
 {
@@ -23,10 +24,15 @@ namespace PortfolioStax.Controllers
             public IActionResult Get(int portfolioItemID)
             {
                 PortfolioItem id = _portfolioDownloadRepository.GetById(portfolioItemID);
-                //Byte[] b = System.IO.File.ReadAllBytes(Path);
-                //return File(b, "image/jpeg");
+            if (id.FilePath != null) 
+            {
+                Byte[] b = System.IO.File.ReadAllBytes(id.FilePath);
+                return File(b, "image/jpeg");
+            }
 
-                return Ok(id);
+            //return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
+            return StatusCode(500);
+            //return Ok(id);
             }
         }
     }
