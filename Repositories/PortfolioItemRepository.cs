@@ -16,7 +16,7 @@ public class PortfolioItemRepository : BaseRepository, IPortfolioItemRepository
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = @"
-                SELECT Id, StudentId, ItemType, CompletedDateTime, Title,Description,PortfolioId
+                SELECT Id, StudentId, ItemType, CompletedDateTime, Title,Description,PortfolioId, FilePath
                 FROM PortfolioItem";
 
                 var reader = cmd.ExecuteReader();
@@ -33,6 +33,7 @@ public class PortfolioItemRepository : BaseRepository, IPortfolioItemRepository
                         Title = DbUtils.GetString(reader, "Title"),
                         Description = DbUtils.GetString(reader, "Description"),
                         PortfolioId = DbUtils.GetInt(reader, "PortfolioId"),
+                        FilePath = DbUtils.GetString(reader, "FilePath"),
 
 
                     });
