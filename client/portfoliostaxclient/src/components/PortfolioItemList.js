@@ -45,19 +45,18 @@ import axios from 'axios';
 
 var config = { responseType: 'blob' }
 
-function DownloadFile(pitem) {
-  return axios.get('https://localhost:5001/api/PortfolioDownload/download?portfolioItemID=' + pitem.id, config)
-  .then(function (response) {
-    pitem.blob=response.data
-  }).catch(error => console.log(error));
-}
+// function DownloadFile(pitem) {
+//   return axios.get('https://localhost:5001/api/PortfolioDownload/download?portfolioItemID=' + pitem.id, config)
+//   .then(function (response) {
+//     pitem.blob=response.data
+//   }).catch(error => console.log(error));
+// }
 
 function response(e) {
   var urlCreator = window.URL || window.webkitURL;
   var imageUrl = urlCreator.createObjectURL(this.response);
-  document.querySelector("#image1").src = imageUrl;
+  document.querySelector("#image"+e.currentTarget.portfolioItemId).src = imageUrl;
 }
-
 
 
 // //get the actual bytes
@@ -110,7 +109,7 @@ const PortfolioItemList = () => {
   // ));
 for (let i = 0; i < portfolioItems.length; i++){
   // alert(i)
-  console.log(portfolioItems[i]);
+  // console.log(portfolioItems[i]);
   // var data=DownloadFile(portfolioItems[i].id)
   // var img=DownloadFile(portfolioItems[i].id).then(result => console.log(result))
   // var img=DownloadFile(portfolioItems[i].id).then(result => console.log(result))
@@ -121,11 +120,11 @@ for (let i = 0; i < portfolioItems.length; i++){
   //   })
   //   .catch(error => console.log(error));
 
-  console.log("downloading file")
-  console.log(portfolioItems[i])
-  DownloadFile(portfolioItems[i])
-  console.log("after download")
-  console.log(portfolioItems[i])
+  // console.log("downloading file")
+  // console.log(portfolioItems[i])
+  // DownloadFile(portfolioItems[i])
+  // console.log("after download")
+  // console.log(portfolioItems[i])
 
  
   // const blob = new Blob(portfolioItems[i].blob, { type: "image/png" });
@@ -145,18 +144,20 @@ for (let i = 0; i < portfolioItems.length; i++){
   // portfolioItems[i].url=url
   // portfolioItems[i].url = url
 
-  console.log("double check blob")
-  console.log("portfolio-item-blob: "+portfolioItems[i].blob)
+  // console.log("double check blob")
+  // console.log("portfolio-item-blob: "+portfolioItems[i].blob)
 
   var xhr = new XMLHttpRequest();
   xhr.open("GET", 'https://localhost:5001/api/PortfolioDownload/download?portfolioItemID=' + portfolioItems[i].id);
   xhr.responseType = "blob";
+  xhr.portfolioItemId = portfolioItems[i].id
   xhr.onload = response;
-  xhr.send();
+  // xhr.onload = wrapResponse(45);
+  xhr.send(null);
 
   var imgName="image"+portfolioItems[i].id
 
-  console.log(imgName)
+  // console.log(imgName)
 
   portfolioItems[i].imageTagName=imgName
 
@@ -211,8 +212,8 @@ for (let i = 0; i < portfolioItems.length; i++){
           </Button>
           {portfolioItems.map((portfolioItem) => (
             <div key={portfolioItem.id} className="portfolio-item">
-              <img src={portfolioItem.url} alt={`Portfolio item ${portfolioItem.id}`} />
-              <img className={portfolioItem.URL} src={"data:image/jpeg;base64," + portfolioItem.blob}></img>
+              {/* <img src={portfolioItem.url} alt={`Portfolio item ${portfolioItem.id}`} /> */}
+              {/* <img className={portfolioItem.URL} src={"data:image/jpeg;base64," + portfolioItem.blob}></img> */}
               <img id={portfolioItem.imageTagName}/>
               <PortfolioItem
                 portfolioItem={portfolioItem}
