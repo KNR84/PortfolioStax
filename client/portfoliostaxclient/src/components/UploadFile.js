@@ -1,145 +1,66 @@
-// import React, { useState } from 'react';
-
-// function UploadFile() {
-//   const [filePath, setFilePath] = useState('');
-
-//   const handleFileChange = (e) => {
-//     const path = URL.createObjectURL(e.target.files[0]);
-//     setFilePath(path);
-//     alert(path)
-//   };
-
-//   const handleButtonClick = () => {
-//     // Trigger file input
-//     document.getElementById('fileInput').click();
-//   };
-
-//   return (
-//     <div>
-//       <input
-//         type="file"
-//         id="fileInput"
-//         style={{ display: 'none' }}
-//         onChange={handleFileChange}
-//       />
-//       <button onClick={handleButtonClick}>Upload File</button>
-//       <p>File Path: {filePath}</p>
-//     </div>
-//   );
-// }
-
-// export default UploadFile;
-
-/////--------------------------------------------^^^Barry's site
+// //--working code starts here__________________________________________
 
 // import React, { useState } from 'react';
 // import axios from 'axios';
 
-
 // function UploadFile() {
-
-//   const [file, setFile] = useState()
-
-//   function handleChange(event) {
-//     setFile(event.target.files[0])
-//   }
-
-//   function handleSubmit(event) {
-//     event.preventDefault()
-//     const url = 'http://localhost:3000/uploadFile';
-//     const formData = new FormData();
-//     formData.append('file', file);
-//     formData.append('fileName', file.name);
-//     const config = {
-//       headers: {
-//         'content-type': 'multipart/form-data',
-//       },
-//     };
-//     axios.post(url, formData, config).then((response) => {
-//       console.log(response.data);
-//     });
-
-//   }
-
-//   return (
-//     <div className="App">
-//         <form onSubmit={handleSubmit}>
-//           <h1>React File Upload</h1>
-//           <input type="file" onChange={handleChange}/>
-//           <button type="submit">Upload</button>
-//         </form>
-//     </div>
-//   );
-// }
-
-// export default UploadFile;
-
-//------------------------------------------- Working sort of
-
-
-// import React, {useState} from 'react';
-// import axios from 'axios';
-
-// function UploadFile() {
-
-//   const [file, setFile] = useState();
-//   const [uploadedFile, setUploadedFile] = useState();
-//   const [error, setError] = useState();
+//   const [file, setFile] = useState(null);
+//   const [uploadedFile, setUploadedFile] = useState(null);
+//   const [error, setError] = useState(null);
 
 //   function handleChange(event) {
 //     setFile(event.target.files[0]);
 //   }
-  
-//   function handleSubmit(event) {
+
+//   async function handleSubmit(event) {
 //     event.preventDefault();
-//     const url = 'http://localhost:3000/uploadFile'; // <<< UPDATE THIS TO MATCH YOUR SERVER URL (PROBABLY 5001)
+
 //     const formData = new FormData();
 //     formData.append('file', file);
-//     formData.append('fileName', file.name);
-//     const config = {
-//       headers: {
-//         'content-type': 'multipart/form-data',
-//       },
-//     };
-//     axios.post(url, formData, config)
-//       .then((response) => {
-//         console.log(response.data);
-//         setUploadedFile(response.data.file);
-//       })
-//       .catch((error) => {
-//         console.error("Error uploading file: ", error);
-//         setError(error);
+
+//     try {
+//       const response = await axios.post('https://localhost:5001/api/NewPortfolioUpload/upload?id=1', formData, {
+//         headers: {
+//           'Content-Type': 'multipart/form-data'
+//         }
 //       });
+
+//       setUploadedFile(response.data.fileUrl);
+//     } catch (error) {
+//       console.error('Error uploading file:', error);
+//       setError(error.message);
+//     }
 //   }
 
 //   return (
 //     <div className="App">
-//         <form onSubmit={handleSubmit}>
-//           <h1>React File Upload</h1>
-//           <input type="file" onChange={handleChange}/>
-//           <button type="submit">Upload</button>
-//         </form>
-//         {uploadedFile && <img src={uploadedFile} alt="Uploaded content"/>}
-//         {error && <p>Error uploading file: {error.message}</p>}
+//       <form onSubmit={handleSubmit}>
+//         <h1>React File Upload</h1>
+//         <input type="file" onChange={handleChange} />
+//         <button type="submit">Upload</button>
+//       </form>
+//       {uploadedFile && <img src={uploadedFile} alt="Uploaded content" />}
+//       {error && <p>Error uploading file: {error}</p>}
 //     </div>
 //   );
 // }
 
-// export default UploadFile;
 
 
-//--working code starts here__________________________________________
-
+// code after styling
 import React, { useState } from 'react';
 import axios from 'axios';
+import './UploadFile.css'; // Import CSS file for styling
 
 function UploadFile() {
   const [file, setFile] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [error, setError] = useState(null);
+  const [fileChosen, setFileChosen] = useState(false); // Track whether a file has been chosen
 
   function handleChange(event) {
     setFile(event.target.files[0]);
+    setFileChosen(true); // Set fileChosen to true when a file is chosen
   }
 
   async function handleSubmit(event) {
@@ -156,6 +77,8 @@ function UploadFile() {
       });
 
       setUploadedFile(response.data.fileUrl);
+      // Redirect upon successful upload
+      window.location.href = '/portfolioItem/list';
     } catch (error) {
       console.error('Error uploading file:', error);
       setError(error.message);
@@ -164,9 +87,11 @@ function UploadFile() {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <h1>React File Upload</h1>
-        <input type="file" onChange={handleChange} />
+      <h1>Upload your file</h1>
+      <form className="UploadForm" onSubmit={handleSubmit}>
+        <input type="file" id="fileInput" onChange={handleChange} />
+        <label htmlFor="fileInput">Choose File</label>
+        {fileChosen && <span style={{ color: 'green', marginLeft: '5px' }}>&#10004;</span>} {/* Display checkmark when a file is chosen */}
         <button type="submit">Upload</button>
       </form>
       {uploadedFile && <img src={uploadedFile} alt="Uploaded content" />}
@@ -176,6 +101,11 @@ function UploadFile() {
 }
 
 export default UploadFile;
+
+
+
+
+
 
 
 

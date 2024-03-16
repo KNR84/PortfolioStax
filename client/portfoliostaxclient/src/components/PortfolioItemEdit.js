@@ -9,7 +9,10 @@ export const EditPortfolioItem = () => {
     const [portfolioItem, setPortfolioItem] = useState({
         itemType: "",
         title: "",
-        description: ""
+        description: "",
+        studentId: 0,
+        portfolioId: 0, 
+        filePath: "",
     });
 
     const navigate = useNavigate();
@@ -27,7 +30,7 @@ export const EditPortfolioItem = () => {
 
         editPortfolioItem(portfolioItem)
             .then(() => {
-                navigate("/portfolioItem"); // Navigate back to /portfolioItem
+                navigate("/portfolioItem/list"); // Navigate back to /portfolioItem
             })
             .catch((error) => {
                 console.error("Error editing portfolio item:", error);
@@ -70,6 +73,22 @@ export const EditPortfolioItem = () => {
                     }}
                 />
              </InputGroup>
+             {/* <InputGroup>
+                <Input
+                    placeholder='File Path'
+                    value={portfolioItem.filePath}
+                    onChange={(e) => {
+                        const copy = { ...portfolioItem };
+                        copy.filePath = e.target.value;
+                        setPortfolioItem(copy);
+                    }}
+                />
+             </InputGroup> */}
+
+
+            
+
+
              <Button color='primary' onClick={(e) => handleSubmit(e)}>
                 Save
             </Button>

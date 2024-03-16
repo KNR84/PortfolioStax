@@ -1,0 +1,30 @@
+.portfolio-card {
+    display: flex;
+    margin-bottom: 20px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  .portfolio-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .portfolio-image {
+    width: 200px; /* Adjust the width of the image column as needed */
+    padding: 10px;
+  }
+  
+  .portfolio-image img {
+    width: 100%;
+    height: auto;
+  }
+  .add-New-Item-Button {
+    display: flex;
+    justify-content: flex-end; /* Align items to the end (right) of the container */
+}
+
+  

@@ -19,15 +19,15 @@ export default function Home() {
         <div className="content">
           <h4>Create Your Portfolio</h4>
           <p>From worksheets to science experiments and field trips, capture every milestone. It's not just a portfolio; it's a living testament to their journey. Dive in and let the magic unfold! </p>
-          <Link to="/create-portfolio"><button>Learn More</button></Link>
+          <Link to="/create/new/portfolio"><button>Learn More</button></Link>
         </div>
       </div>
 
       <div className="section">
         <div className="content">
-          <h4>View and Update Your Portfolio</h4>
+          <h4>View and Update Your Portfolio's Items</h4>
           <p>Dive into your child's progress, tweak, and tailor throughout the year. It's your dynamic canvas to witness growth firsthand. Let's embark on this journey together!</p>
-          <Link to="/view-portfolio"><button>Learn More</button></Link>
+          <Link to="/portfolioItem/list"><button>Learn More</button></Link>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ export default function Home() {
         <div className="content">
           <h4>Keep Organized</h4>
           <p>Track homeschooling activities, deadlines, and reviews on our calendar. Plus, never miss a beat with handy reminders. Let's streamline your homeschooling journey together!</p>
-          <Link to="/keep-organized"><button>Learn More</button></Link>
+          <Link to="/keep/organized"><button>Learn More</button></Link>
         </div>
       </div>
 
@@ -43,7 +43,7 @@ export default function Home() {
         <div className="content">
           <h4>Share Your Progress</h4>
           <p>Invite reviewers to assess your child's journey and ensure they meet standards for advancement. Together, let's pave the way for their bright future!</p>
-          <Link to="/add-reviewer"><button>Learn More</button></Link>
+          <Link to="/add/reviewer"><button>Learn More</button></Link>
         </div>
       </div>
 

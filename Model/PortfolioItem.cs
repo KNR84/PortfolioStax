@@ -11,6 +11,6 @@ namespace PortfolioStax.Model
         public string Title { get; set; }
         public string Description { get; set; }
         public int PortfolioId { get; set; }
-        public string FilePath { get; set; }
+        public string? FilePath { get; set; }
     }
 }
