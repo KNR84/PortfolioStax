@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import BannerRotator from "./BannerRotator";
 import bannerphoto from '../Images/bannerphoto.png'; // Importing bannerphoto.png
 import logo from '../Images/logo.png'
+import './Home.css'; // Import home.css file
 
 export default function Home() {
   const images = [bannerphoto, logo]; // Array for banner swap out. 

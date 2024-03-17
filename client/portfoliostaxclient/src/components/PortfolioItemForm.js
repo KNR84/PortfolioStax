@@ -1,8 +1,8 @@
-// this component provides a form for users to add a new portfolioItem. It captures the input data, sends it to the server via a POST request, and updates the UI with the new portfolio item upon successful addition
-
 import React, { useState } from "react";
 import { addPortfolioItem } from "../APIManagers/PortfolioItemViewManager";
 import { useNavigate, useParams } from 'react-router-dom';
+import './Form.css';
+
 
 export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
     const [newPortfolioItem, setNewPortfolioItem] = useState({
@@ -44,25 +44,27 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
     };
 
     return (
-        <>
+        <div className="full-page-container"> {/* Wrap the form in a container */}
+       
+            <div className="header">
+              <br></br>
+              <br></br>
+                <h2>Submit your new Portfolio Item here:</h2>
+                <p>This page serves as a gateway to adding a new portfolio item to your child's homeschool portfolio. As dedicated educators and guardians, we understand the importance of showcasing your child's educational journey and accomplishments. With this tool, you can document and celebrate their progress, capturing every milestone along the way.
+
+Adding a new portfolio item is simple and intuitive. Enter the project title, subject, and a description of what your child learned in this form then attach an image to showcase accomplishments. Each entry is a testament to their growth and learning experience, forming a comprehensive record of their homeschooling journey.
+
+Your child's portfolio is more than just a collection of assignments; it's a living testament to their dedication and achievement. Start adding new items today to create a vibrant showcase of their unique talents and accomplishments.
+
+Thank you for entrusting us with a part of your homeschooling journey. Together, let's celebrate the joy of learning and the power of education.</p>
+
+            </div>
             <form className="portfolio-form">
                 <fieldset>
                     <div className="form-group">
-                        <h3><b><label htmlFor="itemType">Subject:</label></b></h3>
+                        <label htmlFor="title"><b>Project title:</b></label>
                         <input
-                            type="text"
-                            id="itemType"
-                            value={newPortfolioItem.itemType}
-                            onChange={(event) => {
-                                const copy = { ...newPortfolioItem };
-                                copy.itemType = event.target.value;
-                                setNewPortfolioItem(copy);
-                            }}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <h3><b><label htmlFor="title">Title:</label></b></h3>
-                        <input
+                            placeholder='Enter the project title here'
                             type="text"
                             id="title"
                             value={newPortfolioItem.title}
@@ -73,11 +75,28 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
                             }}
                         />
                     </div>
+
                     <div className="form-group">
-                        <h3><b><label htmlFor="description">Description:</label></b></h3>
+                        <label htmlFor="itemType"><b>Project subject:</b></label>
                         <input
+                            placeholder='Enter the subject here'
                             type="text"
-                            id="Description"
+                            id="itemType"
+                            value={newPortfolioItem.itemType}
+                            onChange={(event) => {
+                                const copy = { ...newPortfolioItem };
+                                copy.itemType = event.target.value;
+                                setNewPortfolioItem(copy);
+                            }}
+                        />
+                    </div>
+                  
+                    <div className="form-group">
+                        <label htmlFor="description"><b>A description of what I learned:</b></label>
+                        <input
+                            placeholder='A description of what I learned'
+                            type="text"
+                            id="description"
                             value={newPortfolioItem.description}
                             onChange={(event) => {
                                 const copy = { ...newPortfolioItem };
@@ -88,10 +107,8 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
                     </div>
                 </fieldset>
                 <br />
-                <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit New Portfolio</button>
+                <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit</button>
             </form>
-        </>
+        </div>
     );
 };
-
-

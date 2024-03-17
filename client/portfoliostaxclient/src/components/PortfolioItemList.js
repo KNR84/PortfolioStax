@@ -1,5 +1,5 @@
-//after completing crud
-//after refactor and styling 
+// //after completing crud
+// //after refactor and styling 
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
@@ -42,7 +42,6 @@ function PortfolioItemList() {
   const handleSelect = (portfolioItemId) => {
     navigate(`/upload/file/${id}/${portfolioItemId}`);
   };
-  
 
   const handleDelete = (id) => { 
     const confirmDelete = window.confirm("Are you sure you would like to delete this portfolio item?");
@@ -57,6 +56,13 @@ function PortfolioItemList() {
 
 
   return (
+    <div className="full-page-container">
+      <div className="header">
+      <br></br>
+              <br></br>
+                <h2>Add your items:</h2>
+                <p>Here you can view, edit and remove porfolio items from your child's portfolio. Showcase all their hard work with our easy to use application.</p>
+      </div>
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
@@ -68,12 +74,17 @@ function PortfolioItemList() {
           {portfolioItems.map((portfolioItem) => (
             <div key={portfolioItem.id} className="portfolio-card">
               <div className="portfolio-details">
+                
                 <div className="portfolio-image">
                   <img
                     src={`https://localhost:5001/api/PortfolioDownload/download?portfolioItemID=${portfolioItem.id}`}
                     alt="Portfolio Item"
                   />
                 </div>
+
+
+      
+
                 <PortfolioItem
                   portfolioItem={portfolioItem}
                   onEdit={handleEdit}
@@ -86,10 +97,18 @@ function PortfolioItemList() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
 export default PortfolioItemList;
+
+
+
+
+
+
+
 
 
 

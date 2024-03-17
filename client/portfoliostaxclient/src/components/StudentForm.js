@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { addStudent } from "../APIManagers/StudentViewManager";
 import { useNavigate } from 'react-router-dom'
+import './Form.css';
 
 
 export const StudentForm = () => {
@@ -40,6 +41,20 @@ const navigate = useNavigate()
 
     return (
         <>
+        <div className="full-page-container"> {/* Wrap the form in a container */}
+        <div className="header">
+              <br></br>
+              <br></br>
+                <h2>Add a new Student here:</h2>
+                <p>This page serves as a hub for seamlessly adding multiple students to your account, enhancing the management and organization of your educational endeavors. We recognize the significance of efficiently documenting and tracking each student's academic journey.
+
+Adding new students to your account is straightforward and user-friendly. Simply provide essential details such as the student's firt and last name and their grade level and we will do the rest. Each addition contributes to a comprehensive roster, enabling you to manage and monitor the progress of every student under your care.
+
+Your account isn't just a list of names; it's a dynamic reflection of your commitment to education and the growth of each individual student. With each new addition, you're building a stronger foundation for their success and creating a supportive environment for learning.
+
+We appreciate the opportunity to be a part of your educational journey. Together, let's empower students to reach their full potential and celebrate their achievements along the way.</p>
+
+            </div>
         <form className="portfolio-form">
             <fieldset>
                 <div className="form-group">
@@ -83,8 +98,9 @@ const navigate = useNavigate()
                 </div>
             </fieldset>
             <br />
-            <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit New Portfolio</button>
+            <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit</button>
         </form>
+        </div>
     </>
 );
 };

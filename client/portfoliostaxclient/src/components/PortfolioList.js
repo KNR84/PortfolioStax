@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPortfolioByStudentId} from "../APIManagers/PortfolioViewManager";
 import Portfolio from "./Portfolio";
+import "./List.css"; // Import CSS file for styling
 
 const PortfolioList = () => {
   const [portfolios, setPortfolios] = useState([]);
@@ -37,6 +38,7 @@ const PortfolioList = () => {
   };
 
   return (
+    <div className="full-page-container">
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
@@ -54,6 +56,8 @@ const PortfolioList = () => {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 };
 

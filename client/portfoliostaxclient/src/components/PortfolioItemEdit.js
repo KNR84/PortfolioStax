@@ -11,7 +11,7 @@ export const EditPortfolioItem = () => {
         title: "",
         description: "",
         studentId: 0,
-        portfolioId: 0, 
+        portfolioId: 0,
         filePath: "",
     });
 
@@ -26,23 +26,37 @@ export const EditPortfolioItem = () => {
     }, [id]);
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
         editPortfolioItem(portfolioItem)
             .then(() => {
-                navigate("/portfolioItem/list"); // Navigate back to /portfolioItem
+                navigate(`/portfolioItem/list/${id}`); // Navigate back to /portfolioItem
             })
             .catch((error) => {
                 console.error("Error editing portfolio item:", error);
-                
+
             });
     };
 
+
     return (
         <Container>
+
             <InputGroup>
                 <Input
-                    placeholder='Item Type'
+                    placeholder='Enter the project title here'
+                    value={portfolioItem.title}
+                    onChange={(e) => {
+                        const copy = { ...portfolioItem };
+                        copy.title = e.target.value;
+                        setPortfolioItem(copy);
+                    }}
+                />
+            </InputGroup>
+
+            <InputGroup>
+                <Input
+                    placeholder='Enter the subject here'
                     value={portfolioItem.itemType}
                     onChange={(e) => {
                         const copy = { ...portfolioItem };
@@ -51,20 +65,10 @@ export const EditPortfolioItem = () => {
                     }}
                 />
             </InputGroup>
-             <InputGroup>
+
+            <InputGroup>
                 <Input
-                    placeholder='Title'
-                    value={portfolioItem.title}
-                    onChange={(e) => {
-                        const copy = { ...portfolioItem };
-                        copy.title = e.target.value;
-                        setPortfolioItem(copy);
-                    }}
-                />
-             </InputGroup>
-             <InputGroup>
-                <Input
-                    placeholder='Description'
+                    placeholder='A description of what I learned'
                     value={portfolioItem.description}
                     onChange={(e) => {
                         const copy = { ...portfolioItem };
@@ -72,8 +76,9 @@ export const EditPortfolioItem = () => {
                         setPortfolioItem(copy);
                     }}
                 />
-             </InputGroup>
-             {/* <InputGroup>
+            </InputGroup>
+           
+            {/* <InputGroup>
                 <Input
                     placeholder='File Path'
                     value={portfolioItem.filePath}
@@ -86,10 +91,10 @@ export const EditPortfolioItem = () => {
              </InputGroup> */}
 
 
-            
 
 
-             <Button color='primary' onClick={(e) => handleSubmit(e)}>
+
+            <Button color='primary' onClick={(e) => handleSubmit(e)}>
                 Save
             </Button>
         </Container>

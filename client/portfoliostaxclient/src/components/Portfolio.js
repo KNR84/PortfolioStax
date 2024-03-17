@@ -10,7 +10,9 @@ const Portfolio = ({ portfolio, onEdit, onSelect }) => {
       <CardBody>
         <p><strong>Start Year:</strong> {portfolio.startYear}</p>
         <p><strong>Finish Year:</strong> {portfolio.finishYear}</p>
+        <span style={{ margin: '0 5px' }}></span>
         <Button onClick={() => onEdit(portfolio.id)}>Edit</Button>
+        <span style={{ margin: '0 5px' }}></span>
         <Button onClick={() => onSelect(portfolio.id)}>Select</Button>
       </CardBody>
     </Card>

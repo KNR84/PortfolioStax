@@ -11,10 +11,13 @@ export const Student = ({ student, onEdit, onDelete, onSelect }) => {
           <strong>{`${student.firstName} ${student.lastName}`}</strong>
         </h5>
         <p>{`Grade Level: ${student.gradeLevel}`}</p>
+        <span style={{ margin: '0 5px' }}></span>
+        <Button onClick={() => onSelect(student.id)}>Select Student</Button> 
+        <span style={{ margin: '0 5px' }}></span>
         <Button onClick={() => onEdit(student.id)}>Edit</Button>
         <span style={{ margin: '0 5px' }}></span>
         <Button onClick={() => onDelete(student.id)} color="danger">Delete</Button>
-        <Button onClick={() => onSelect(student.id)}>Select Student</Button> 
+       
       </CardBody>
     </Card>
   );
