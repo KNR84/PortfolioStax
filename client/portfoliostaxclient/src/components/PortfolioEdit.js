@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Container, Input, InputGroup, Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { editPortfolio, getPortfolioByStudentId } from "../APIManagers/PortfolioViewManager";
+import './Form.css';
 
 export const EditPortfolio = () => {
     const [portfolio, setPortfolio] = useState({
@@ -36,7 +37,12 @@ export const EditPortfolio = () => {
     };
 
     return (
-        <Container>
+        <div className="full-page-container"> {/* Wrap the form in a container */}
+<div className="header">
+              <br></br>
+              <br></br>
+                <h2>Edit your portfolio years here:</h2></div>
+        
             <InputGroup>
                 <Input
                     placeholder='Start Year'
@@ -48,6 +54,7 @@ export const EditPortfolio = () => {
                     }}
                 />
             </InputGroup>
+            <br></br>
             <InputGroup>
                 <Input
                     placeholder='Finish Year'
@@ -59,11 +66,11 @@ export const EditPortfolio = () => {
                     }}
                 />
             </InputGroup>
+            <br></br>
             <Button color='primary' onClick={(e) => handleSubmit(e)}>
                 Save
             </Button>
-        </Container>
+       
+        </div>
     );
 };
-
-

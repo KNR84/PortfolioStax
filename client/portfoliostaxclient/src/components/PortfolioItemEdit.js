@@ -1,9 +1,10 @@
 // this component fetches portfolioItems based on the id parameter from the URL, allows users to edit the portfolioItem information, and saves the changes back to the server when the "Save" button is clicked
 
 import { useEffect, useState } from "react";
-import { Container, Input, InputGroup, Button } from "reactstrap";
+import { Input, InputGroup, Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { editPortfolioItem, getPortfolioItemById } from "../APIManagers/PortfolioItemViewManager";
+import './Form.css';
 
 export const EditPortfolioItem = () => {
     const [portfolioItem, setPortfolioItem] = useState({
@@ -40,7 +41,13 @@ export const EditPortfolioItem = () => {
 
 
     return (
-        <Container>
+        <div className="full-page-container"> {/* Wrap the form in a container */}
+        <div className="header">
+              <br></br>
+              <br></br>
+                <h2>Add a new Student here:</h2>
+
+            </div>
 
             <InputGroup>
                 <Input
@@ -53,7 +60,7 @@ export const EditPortfolioItem = () => {
                     }}
                 />
             </InputGroup>
-
+            <br></br>
             <InputGroup>
                 <Input
                     placeholder='Enter the subject here'
@@ -65,7 +72,7 @@ export const EditPortfolioItem = () => {
                     }}
                 />
             </InputGroup>
-
+            <br></br>
             <InputGroup>
                 <Input
                     placeholder='A description of what I learned'
@@ -78,25 +85,14 @@ export const EditPortfolioItem = () => {
                 />
             </InputGroup>
            
-            {/* <InputGroup>
-                <Input
-                    placeholder='File Path'
-                    value={portfolioItem.filePath}
-                    onChange={(e) => {
-                        const copy = { ...portfolioItem };
-                        copy.filePath = e.target.value;
-                        setPortfolioItem(copy);
-                    }}
-                />
-             </InputGroup> */}
-
-
-
-
-
+            <br></br>
             <Button color='primary' onClick={(e) => handleSubmit(e)}>
                 Save
             </Button>
-        </Container>
+
+            </div>
+        
+        
+
     );
 };

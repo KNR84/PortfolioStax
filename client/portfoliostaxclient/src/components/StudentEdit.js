@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Container, Input, InputGroup, Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { editStudent, getStudentById } from "../APIManagers/StudentViewManager";
+import './Form.css';
 
 export const EditStudent = () => {
     const [student, setStudent] = useState({
@@ -37,7 +38,13 @@ export const EditStudent = () => {
     };
 
     return (
-        <Container>
+        <div className="full-page-container"> {/* Wrap the form in a container */}
+        <div className="header">
+              <br></br>
+              <br></br>
+                <h2>Add a new Student here:</h2>
+
+            </div>
             <InputGroup>
                 <Input
                     placeholder='First Name'
@@ -49,6 +56,7 @@ export const EditStudent = () => {
                     }}
                 />
             </InputGroup>
+            <br></br>
             <InputGroup>
                 <Input
                     placeholder='Last Name'
@@ -60,9 +68,11 @@ export const EditStudent = () => {
                     }}
                 />
              </InputGroup>
+             <br></br>
              <InputGroup>
                 <Input
                     placeholder='Grade Level'
+                    htmlFor="gradeLevel"
                     value={student.gradeLevel}
                     onChange={(e) => {
                         const copy = { ...student };
@@ -71,10 +81,12 @@ export const EditStudent = () => {
                     }}
                 />
              </InputGroup>
+             <br></br>
              <Button color='primary' onClick={(e) => handleSubmit(e)}>
                 Save
             </Button>
-        </Container>
+            </div>
+        
     );
 };
 

@@ -20,15 +20,15 @@ export default function Home() {
         <div className="content">
           <h4>Create Your Portfolio</h4>
           <p>From worksheets to science experiments and field trips, capture every milestone. It's not just a portfolio; it's a living testament to their journey. Dive in and let the magic unfold! </p>
-          <Link to="/create/new/portfolio"><button>Learn More</button></Link>
+          {/* <Link to="/create/new/portfolio"><button>Learn More</button></Link> */}
         </div>
       </div>
 
       <div className="section">
         <div className="content">
-          <h4>View and Update Your Portfolio's Items</h4>
+          <h4>View your Students</h4>
           <p>Dive into your child's progress, tweak, and tailor throughout the year. It's your dynamic canvas to witness growth firsthand. Let's embark on this journey together!</p>
-          <Link to="/portfolioItem/list"><button>Learn More</button></Link>
+          <Link to="/student/list"><button>Learn More</button></Link>
         </div>
       </div>
 

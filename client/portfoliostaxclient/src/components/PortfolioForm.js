@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { addPortfolio } from "../APIManagers/PortfolioViewManager";
 import { useNavigate } from 'react-router-dom'
-import './Form.css';
 
 
 export const PortfolioForm = ({ updatePortfoliosState }) => {
@@ -36,18 +35,11 @@ const navigate = useNavigate()
     }
 
     return (
-        <div className="full-page-container"> {/* Wrap the form in a container */}
-         <div className="header">
-              <br></br>
-              <br></br>
-                <h2>Create a new portfolio:</h2>
-                <p>Organizing your educational journey by year can offer clarity and simplicity. Please indicate the year you commenced this grade and the year you intend to complete it.</p>
-
-            </div>
+        <>
         <form className="portfolio-form">
             <fieldset>
                 <div className="form-group">
-                    <h3><b><label htmlFor="startYear">Year you began this grade:</label></b></h3>
+                    <h3><b><label htmlFor="startYear">Start Year:</label></b></h3>
                     <input
                         type="text"
                         id="startYear"
@@ -60,7 +52,7 @@ const navigate = useNavigate()
                     />
                 </div>
                 <div className="form-group">
-                    <h3><b><label htmlFor="finishYear">Year you plan to finish:</label></b></h3>
+                    <h3><b><label htmlFor="finishYear">Finish Year:</label></b></h3>
                     <input
                         type="text"
                         id="finishYear"
@@ -74,9 +66,8 @@ const navigate = useNavigate()
                 </div>
             </fieldset>
             <br />
-            <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit</button>
+            <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit New Portfolio</button>
         </form>
-        </div>
-   
+    </>
 );
 };
