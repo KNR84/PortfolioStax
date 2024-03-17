@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PortfolioStax")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81b50b3ba8f611d092897a9c195ab2fdb229166a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e9c94a2ba073ab8ccba0dc936471d44c3e89a47")]
 [assembly: System.Reflection.AssemblyProductAttribute("PortfolioStax")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PortfolioStax")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

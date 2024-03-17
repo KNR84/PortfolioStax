@@ -2,7 +2,7 @@
 import React from "react";
 import { Card, CardBody, Button } from "reactstrap";
 
-export const PortfolioItem = ({ portfolioItem, onEdit, onDelete }) => {
+export const PortfolioItem = ({ portfolioItem, onEdit, onDelete, onSelect }) => {
   // Function to format date in a friendlier way
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -22,6 +22,7 @@ export const PortfolioItem = ({ portfolioItem, onEdit, onDelete }) => {
         <Button onClick={() => onEdit(portfolioItem.id)}>Edit</Button>
         <span style={{ margin: '0 5px' }}></span>
         <Button onClick={() => onDelete(portfolioItem.id)} color="danger">Delete</Button> 
+        <Button onClick={() => onSelect(portfolioItem.id)} color="danger">Add a photo</Button> 
       </CardBody>
     </Card>
   );

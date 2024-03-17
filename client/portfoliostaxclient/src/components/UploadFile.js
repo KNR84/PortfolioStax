@@ -50,9 +50,13 @@
 // code after styling
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate, useParams } from "react-router-dom";
 import './UploadFile.css'; // Import CSS file for styling
 
+// const { id } = useParams();
+
 function UploadFile() {
+  alert(id)
   const [file, setFile] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [error, setError] = useState(null);

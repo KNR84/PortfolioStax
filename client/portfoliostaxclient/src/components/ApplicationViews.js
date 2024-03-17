@@ -30,20 +30,20 @@ export default function ApplicationViews() {
       <Route path="/register" element={<Register />} /> {/* This is my register page */}
       
       
-      <Route path="/upload/file" element={<UploadFile />} /> {/* This is my upload file page */}
+      <Route path="/upload/file/:id" element={<UploadFile />} /> {/* This is my upload file page */}
      
       
 
      <Route path="/create/new/portfolio" element={<PortfolioForm />} />{/* This is my create a new portfolio page */}
-     <Route path="/portfolio/list" element={<PortfolioList />} />
+     <Route path="/portfolio/list/:id" element={<PortfolioList />} />
      <Route path="/portfolios/edit/:id" element={<EditPortfolio />} />
 
      <Route path="/create/new/student" element={<StudentForm />} />{/* This is my create a new student page */}
      <Route path="/student/list" element={<StudentList/>} />
      <Route path="/students/edit/:id" element={<EditStudent />} />
 
-     <Route path="/create/new/portfolioItem" element={<PortfolioItemForm />} />{/* This is my create a new portfolio item page */}
-     <Route path="/portfolioItem/list" element={<PortfolioItemList/>} />
+     <Route path="/create/new/portfolioItem/:id" element={<PortfolioItemForm />} />{/* This is my create a new portfolio item page */}
+     <Route path="/portfolioItem/list/:id" element={<PortfolioItemList/>} />
      <Route path="/portfolioItem/edit/:id" element={<EditPortfolioItem />} />
 
 

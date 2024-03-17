@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { addPortfolioItem } from "../APIManagers/PortfolioItemViewManager";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
     const [newPortfolioItem, setNewPortfolioItem] = useState({
@@ -16,6 +16,7 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
     });
 
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const clickTheSaveButton = (e) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
             itemType: newPortfolioItem.itemType,
             title: newPortfolioItem.title,
             description: newPortfolioItem.description,
+            portfolioId: id,
             completedDateTime: currentDate // Update completedDateTime with current date and time
         };
 
@@ -36,8 +38,8 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
                     description: "",
                     completedDateTime: currentDate // Update completedDateTime in state
                 });
-                updatePortfolioItemsState();
-                navigate('/'); // Redirect to home or any other page after submission
+                // updatePortfolioItemsState();
+                navigate(`/portfolioItem/list/${id}`); 
             });
     };
 

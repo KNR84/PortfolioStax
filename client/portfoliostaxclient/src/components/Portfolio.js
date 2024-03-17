@@ -4,13 +4,14 @@ import React from "react";
 import { Card, CardBody, Button } from "reactstrap";
 
 
-const Portfolio = ({ portfolio, onEdit }) => {
+const Portfolio = ({ portfolio, onEdit, onSelect }) => {
   return (
     <Card className="m-4" key={portfolio.id}>
       <CardBody>
         <p><strong>Start Year:</strong> {portfolio.startYear}</p>
         <p><strong>Finish Year:</strong> {portfolio.finishYear}</p>
         <Button onClick={() => onEdit(portfolio.id)}>Edit</Button>
+        <Button onClick={() => onSelect(portfolio.id)}>Select</Button>
       </CardBody>
     </Card>
   );

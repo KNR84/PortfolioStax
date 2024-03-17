@@ -86,7 +86,7 @@ public class PortfolioItemRepository : BaseRepository, IPortfolioItemRepository
     }
 
     //getting portfolio items belonging to a specific portfolioID (ie all of Cohen's items.) 
-    public List<PortfolioItem> GetAllByPortfolioId(int portfolioItemId)
+    public List<PortfolioItem> GetAllByPortfolioId(int portfolioId)
     {
         using (var conn = Connection)
         {
@@ -96,9 +96,9 @@ public class PortfolioItemRepository : BaseRepository, IPortfolioItemRepository
                 cmd.CommandText = @"
             SELECT Id, StudentId, ItemType, CompletedDateTime, Title, Description, PortfolioId
             FROM PortfolioItem
-            WHERE PortfolioId = @PortfolioItemId";
+            WHERE PortfolioId = @PortfolioId";
 
-                DbUtils.AddParameter(cmd, "@PortfolioItemId", portfolioItemId);
+                DbUtils.AddParameter(cmd, "@PortfolioId", portfolioId);
 
                 var reader = cmd.ExecuteReader();
 

@@ -37,6 +37,9 @@ const StudentList = () => {
   const handleEdit = (studentId) => {
     navigate(`/students/edit/${studentId}`);
   };
+  const handleSelect = (studentId) => {
+    navigate(`/portfolio/list/${studentId}`);
+  };
 
   const handleDelete = (id) => { 
     const confirmDelete = window.confirm("Are you sure you would like to delete this student?");
@@ -61,6 +64,7 @@ const StudentList = () => {
               student={student}
               onEdit={handleEdit} 
               onDelete={handleDelete}
+              onSelect={handleSelect}
             />
           ))}
         </div>
