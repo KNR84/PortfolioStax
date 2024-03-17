@@ -30,7 +30,7 @@ export default function ApplicationViews() {
       <Route path="/register" element={<Register />} /> {/* This is my register page */}
       
       
-      <Route path="/upload/file/:id" element={<UploadFile />} /> {/* This is my upload file page */}
+      <Route path="/upload/file/:portfolioId/:portfolioItemId" element={<UploadFile />} /> {/* This is my upload file page */}
      
       
 

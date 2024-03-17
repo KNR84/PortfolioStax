@@ -40,7 +40,7 @@ function PortfolioItemList() {
   };
 
   const handleSelect = (portfolioItemId) => {
-    navigate(`/upload/file/${portfolioItemId}`);
+    navigate(`/upload/file/${id}/${portfolioItemId}`);
   };
   
 

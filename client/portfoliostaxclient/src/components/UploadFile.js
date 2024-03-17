@@ -54,9 +54,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import './UploadFile.css'; // Import CSS file for styling
 
 // const { id } = useParams();
+const UploadFile = () => {
+  // const [portfolios, setPortfolios] = useState([]);
+  const navigate = useNavigate();
+  const {portfolioId, portfolioItemId } = useParams();
+  var retHTML = PostFile(portfolioId, portfolioItemId);
 
-function UploadFile() {
-  alert(id)
+  // const handleSelect = () => {
+  //   navigate(`/portfolioItem/list/${portfolioId}`);
+  // };
+
+  // const element = document.getElementById('sub');
+  // element.onclick = handleSelect(id)
+
+  return retHTML
+}
+
+
+function PostFile(portfolioId, portfolioItemId) {
   const [file, setFile] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [error, setError] = useState(null);
@@ -74,7 +89,7 @@ function UploadFile() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('https://localhost:5001/api/NewPortfolioUpload/upload?id=1', formData, {
+      const response = await axios.post(`https://localhost:5001/api/NewPortfolioUpload/upload?id=${portfolioItemId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -82,7 +97,7 @@ function UploadFile() {
 
       setUploadedFile(response.data.fileUrl);
       // Redirect upon successful upload
-      window.location.href = '/portfolioItem/list';
+      window.location.href = `/portfolioItem/list/${portfolioId}`;
     } catch (error) {
       console.error('Error uploading file:', error);
       setError(error.message);
@@ -96,6 +111,7 @@ function UploadFile() {
         <input type="file" id="fileInput" onChange={handleChange} />
         <label htmlFor="fileInput">Choose File</label>
         {fileChosen && <span style={{ color: 'green', marginLeft: '5px' }}>&#10004;</span>} {/* Display checkmark when a file is chosen */}
+        {/* <button type="submit" id="sub">Upload</button> */}
         <button type="submit">Upload</button>
       </form>
       {uploadedFile && <img src={uploadedFile} alt="Uploaded content" />}
