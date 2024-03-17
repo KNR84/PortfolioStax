@@ -44,7 +44,7 @@ export default function ApplicationViews() {
 
      <Route path="/create/new/portfolioItem/:id" element={<PortfolioItemForm />} />{/* This is my create a new portfolio item page */}
      <Route path="/portfolioItem/list/:id" element={<PortfolioItemList/>} />
-     <Route path="/portfolioItem/edit/:id" element={<EditPortfolioItem />} />
+     <Route path="/portfolioItem/edit/:portfolioId/:portfolioItemId" element={<EditPortfolioItem />} />
 
 
 

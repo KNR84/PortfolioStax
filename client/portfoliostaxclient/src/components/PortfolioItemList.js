@@ -3,22 +3,22 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { deletePortfolioItem, getPortfolioItemById } from "../APIManagers/PortfolioItemViewManager";
+import { deletePortfolioItem, getPortfolioItemByPortfolioId } from "../APIManagers/PortfolioItemViewManager";
 import PortfolioItem from "./PortfolioItem";
 import "./PortfolioItemList.css"; // Import CSS file for styling
 
 function PortfolioItemList() {
   const [portfolioItems, setPortfolioItems] = useState([]);
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id: portfolioId } = useParams();
 
   const getPortfolioItems = () => {
-    getPortfolioItemById(id).then((allPortfolioItems) => setPortfolioItems(allPortfolioItems));
+    getPortfolioItemByPortfolioId(portfolioId).then((allPortfolioItems) => setPortfolioItems(allPortfolioItems));
   };
 
 
   const updatePortfolioItemsState2 = () => {
-    return getPortfolioItemById (id)
+    return getPortfolioItemByPortfolioId (portfolioId)
       .then((portfolioItemArray) => {
         setPortfolioItems(portfolioItemArray);
       })
@@ -29,18 +29,18 @@ function PortfolioItemList() {
 
   useEffect(() => {
     updatePortfolioItemsState2();
-  }, [id]);
+  }, [portfolioId]);
 
   const handleAddNewPortfolioItems = () => {
-    navigate(`/create/new/portfolioItem/${id}`);
+    navigate(`/create/new/portfolioItem/${portfolioId}`);
   };
 
   const handleEdit = (portfolioItemId) => {
-    navigate(`/portfolioItem/edit/${portfolioItemId}`);
+    navigate(`/portfolioItem/edit/${portfolioId}/${portfolioItemId}`);
   };
 
   const handleSelect = (portfolioItemId) => {
-    navigate(`/upload/file/${id}/${portfolioItemId}`);
+    navigate(`/upload/file/${portfolioId}/${portfolioItemId}`);
   };
 
   const handleDelete = (id) => { 

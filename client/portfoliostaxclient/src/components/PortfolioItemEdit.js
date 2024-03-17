@@ -17,21 +17,21 @@ export const EditPortfolioItem = () => {
     });
 
     const navigate = useNavigate();
-    const { id } = useParams();
+    const {portfolioId, portfolioItemId } = useParams();
 
     useEffect(() => {
-        getPortfolioItemById(id)
+        getPortfolioItemById(portfolioItemId)
             .then((data) => {
                 setPortfolioItem(data);
             });
-    }, [id]);
+    }, [portfolioItemId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         editPortfolioItem(portfolioItem)
             .then(() => {
-                navigate(`/portfolioItem/list/${id}`); // Navigate back to /portfolioItem
+                navigate(`/portfolioItem/list/${portfolioId}`); // Navigate back to /portfolioItem
             })
             .catch((error) => {
                 console.error("Error editing portfolio item:", error);

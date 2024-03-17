@@ -39,7 +39,18 @@ export const editPortfolioItem = (portfolioItem) => {
 
 // Function to get a portfolioItem by id
 export const getPortfolioItemById = (id) => {
-  return fetch(`${baseUrl}/portfolio/${id}`)
+  return fetch(`${baseUrl}/${id}`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res.json();
+    });
+};
+
+ //TODO: this is not right, needs adjusted in the back end
+export const getPortfolioItemByPortfolioId = (id) => {
+ return fetch(`${baseUrl}/portfolio/${id}`)
     .then((res) => {
       if (!res.ok) {
         throw new Error('Network response was not ok');
