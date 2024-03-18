@@ -45,7 +45,7 @@ export const EditPortfolioItem = () => {
         <div className="header">
               <br></br>
               <br></br>
-                <h2>Add a new Student here:</h2>
+                <h2>Edit portfolio details here:</h2>
 
             </div>
 

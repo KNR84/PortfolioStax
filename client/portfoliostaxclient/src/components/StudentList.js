@@ -59,7 +59,7 @@ const StudentList = () => {
       <br></br>
               <br></br>
                 <h2>View your students:</h2>
-                <p>Here you can view, edit and remove students from your roster Just like adding a new portfolio item to document accomplishments, managing students is an integral part of curating a comprehensive record of your childs' homeschooling experience. .</p>
+                <p>Here, you can view, edit, and remove students from your roster. Just as adding a new portfolio item to document accomplishments, managing students is an integral part of curating a comprehensive record of your child's homeschooling experience.</p>
       </div>
       
 

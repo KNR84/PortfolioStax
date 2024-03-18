@@ -162,6 +162,14 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
 
     return (
         <>
+        <div className="full-page-container"> {/* Wrap the form in a container */}
+        <div className="header">
+              <br></br>
+              <br></br>
+                <h2>Add a New Student Portfolio Item:</h2>
+                <p>This page offers the opportunity to showcase details about your child's work enriching the management and documentation of your educational initiatives. We understand the significance of effectively documenting and celebrating each student's academic journey and accomplishments.</p>
+
+            </div>
             <form className="portfolio-form">
                 <fieldset>
                     <div className="form-group">
@@ -205,8 +213,9 @@ export const PortfolioItemForm = ({ updatePortfolioItemsState }) => {
                     </div>
                 </fieldset>
                 <br />
-                <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit New Portfolio</button>
+                <button onClick={(clickEvent) => clickTheSaveButton(clickEvent)} className="btn btn-primary">Submit</button>
             </form>
+            </div>
         </>
     );
 };

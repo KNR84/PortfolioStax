@@ -36,11 +36,11 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
 </NavItem>
 
 <NavItem>
-  <NavLink tag={RRNavLink} to="/keep-organized">Keep Organized</NavLink>
+  <NavLink tag={RRNavLink} to="/keep/organized">Keep Organized</NavLink>
 </NavItem>
 
 <NavItem>
-  <NavLink tag={RRNavLink} to="/add-reviewer">Add A Reviewer</NavLink>
+  <NavLink tag={RRNavLink} to="/add/reviewer">Invite A Reviewer</NavLink>
 </NavItem>
 
 

@@ -61,7 +61,7 @@ function PortfolioItemList() {
       <br></br>
               <br></br>
                 <h2>Add your items:</h2>
-                <p>Here you can view, edit and remove porfolio items from your child's portfolio. Showcase all their hard work with our easy to use application.</p>
+                <p>Here, you can view, edit, and remove portfolio items from your child's portfolio. Showcase all their hard work with our easy-to-use application.</p>
       </div>
     <div className="container">
       <div className="row justify-content-center">

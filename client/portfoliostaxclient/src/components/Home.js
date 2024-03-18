@@ -26,7 +26,7 @@ export default function Home() {
 
       <div className="section">
         <div className="content">
-          <h4>View your Students</h4>
+          <h4>View Your Students</h4>
           <p>Dive into your child's progress, tweak, and tailor throughout the year. It's your dynamic canvas to witness growth firsthand. Let's embark on this journey together!</p>
           <Link to="/student/list"><button>Learn More</button></Link>
         </div>
@@ -42,7 +42,7 @@ export default function Home() {
 
       <div className="section">
         <div className="content">
-          <h4>Share Your Progress</h4>
+          <h4>Invite A Reviewer</h4>
           <p>Invite reviewers to assess your child's journey and ensure they meet standards for advancement. Together, let's pave the way for their bright future!</p>
           <Link to="/add/reviewer"><button>Learn More</button></Link>
         </div>
